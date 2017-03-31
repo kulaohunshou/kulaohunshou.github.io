@@ -259,6 +259,218 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-自动化脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/31/自动化脚本/" class="article-date">
+      <time datetime="2017-03-31T11:05:31.000Z" itemprop="datePublished">2017-03-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/31/自动化脚本/">自动化脚本</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <a id="more"></a>
+<p>脚本如下：</p>
+<pre><code>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import json
+import commands
+import sys
+import smtplib
+from email.mime.text import MIMEText
+#接受输入的参数
+#参数一
+#起的集群的类型，有 m1.small;m1.large;m1.xlarge;等等
+#参数二
+#起的集群准备开启几个实例？
+#参数三
+#需要分析文件的输入路径是什么？
+#参数四
+#需要分析文件的输出路径是什么？
+def sendEmail(emailconf):
+sender = emailconf[&apos;sender&apos;] #发件人
+receiver = emailconf[&apos;receiver&apos;] #收件人
+subject = emailconf[&apos;subject&apos;]#邮件主题
+smtpserver = emailconf[&apos;smtpserver&apos;]#smtp服务器
+username = emailconf[&apos;username&apos;]#自己发件箱的用户名
+password = emailconf[&apos;password&apos;]#自己发件箱的密码
+emailcontent=emailconf[&apos;emailcontent&apos;]# 邮件的内容
+msg = MIMEText(&apos;&lt;html&gt;&lt;h5&gt;&apos;+emailcontent+&apos;&lt;/h5&gt;&lt;/html&gt;&apos;, &apos;html&apos;, &apos;utf-8&apos;)
+msg[&apos;Subject&apos;] = subject
+
+smtp = smtplib.SMTP()
+smtp.connect(smtpserver)
+smtp.login(username, password)
+smtp.sendmail(sender, receiver, msg.as_string())
+smtp.quit()
+
+def nlp(conf,sendemail):
+createclustershell=&apos;aws emr create-cluster --name nlp-streaming-post-zhenxiang --release-label emr-5.0.0 --enable-debugging --use-default-roles --ec2-attributes KeyName=cig_dev_key --instance-type &apos;+conf[&quot;str_clusterType&quot;]+&apos; --instance-count &apos;+conf[&apos;str_instanceNum&apos;]+&apos; --no-auto-terminate --log-uri s3://cig-spider/emr-logs/ --configurations https://s3.cn-north-1.amazonaws.com.cn/cig-spider/jar/suzx-nlp/conf-split-tuning.json&apos;;
+clusterstr=commands.getoutput(createclustershell);
+clusterjson=json.loads(clusterstr);
+clusterid=clusterjson[&quot;ClusterId&quot;];
+
+#等待集群启动
+print &quot;==========The cluster &quot;+clusterid+&quot; is starting...==========&quot;
+waitclusterstart=&apos;aws emr wait cluster-running --cluster-id &apos;+clusterid;
+commands.getoutput(waitclusterstart);
+print &quot;==========The cluster &quot;+clusterid+&quot; is started...===========&quot;
+
+#获取集群启动后的ssh到主节点的地址，通过describe-cluster 可以得到一个有关机器情况的json字符串
+clusterbackstr=commands.getoutput(&apos;aws emr describe-cluster --cluster-id &apos;+clusterid);
+#print clusterbackstr;
+clusterbackjson = json.loads(clusterbackstr);
+sshclusterstr2=clusterbackjson[&quot;Cluster&quot;][&quot;MasterPublicDnsName&quot;];
+#print sshclusterstr2;
+sshclusterstr1=&apos;ssh -i ~/cig_dev_key.pem hadoop@&apos;;
+sshclusterstr=sshclusterstr1+sshclusterstr2+&apos; -oStrictHostKeyChecking=no &apos;;
+#print sshclusterstr;
+#跑程序所需要的一些jar包，以及python程序copy到aws cluster的远程主机上
+execcommand1=&apos; aws s3 cp s3://cig-spider/jar/suzx-nlp/nlp-mr-code-optimize.py . &apos;;
+execcommand2=&apos; aws s3 cp s3://cig-spider/jar/suzx-nlp/&apos;+conf[&apos;str_process&apos;]+&apos; . &apos;;
+execcommand3=&apos; aws s3 cp s3://cig-spider/jar/avro-1.7.4.jar . &apos;;
+execcommand4=&apos; aws s3 cp s3://cig-spider/jar/avro-mapred-1.7.4-hadoop1.jar . &apos;;
+execcommand5=&apos; aws s3 cp s3://cig-spider/jar/avro-tools-1.7.7.jar . &apos;;
+execcommand6=&apos; aws s3 cp s3://cig-spider/jar/spider-mr-0.1.0.jar . &apos;;
+
+commands.getoutput(sshclusterstr+execcommand1);
+commands.getoutput(sshclusterstr+execcommand2);
+commands.getoutput(sshclusterstr+execcommand3);
+commands.getoutput(sshclusterstr+execcommand4);
+commands.getoutput(sshclusterstr+execcommand5);
+commands.getoutput(sshclusterstr+execcommand6);
+
+#等待一切准备就绪，集群启动了，所需要的程序放到了master主机上了，就可以执行程序
+exechadoop=&apos; nohup hadoop jar /usr/lib/hadoop/hadoop-streaming.jar -D mapreduce.job.name=&quot;nlp-avro-streaming&quot; -files &apos;+conf[&apos;str_process&apos;]+&apos;,avro-1.7.4.jar,avro-mapred-1.7.4-hadoop1.jar -libjars avro-1.7.4.jar,avro-mapred-1.7.4-hadoop1.jar -archives s3://cig-spider/jar/snownlp.jar#snownlp -input &apos;+conf[&apos;inputURL&apos;]+&apos; -output &apos;+conf[&apos;outputURL&apos;]+&apos; -mapper &quot;&apos;+conf[&apos;str_process&apos;]+&apos;&quot; -inputformat org.apache.avro.mapred.AvroAsTextInputFormat &apos;;
+back =commands.getoutput(sshclusterstr+exechadoop);
+print back;
+
+#等程序跑完后自动停掉集群，以免浪费资源
+terminatedcluster=&apos;aws emr terminate-clusters --cluster-ids &apos;+clusterid;
+commands.getoutput(terminatedcluster)
+#以上程序是把NLP的数据分析过后转成了string格式，以下的程序是在以上程序的基础上继续转化，把数据转化成avro格式。
+
+str2avro=&apos;aws emr create-cluster --name generate-koubei-nlp-avro --release-label emr-5.0.0 --steps Type=CUSTOM_JAR,Name=generate-koubei-nlp-avro,ActionOnFailure=CONTINUE,Jar=s3://cig-spider/jar/spider-mr-0.1.0.jar,MainClass=&apos;+conf[&quot;mainclass&quot;]+&apos;,Args=&apos;+conf[&apos;outputURL&apos;]+&apos;,&apos;+conf[&apos;outputavroURL&apos;]+&apos; --enable-debugging --use-default-roles --ec2-attributes KeyName=cig_dev_key --instance-type &apos;+conf[&apos;avro_clusterType&apos;]+&apos; --instance-count &apos;+conf[&apos;avro_instanceNum&apos;]+&apos; --auto-terminate  --log-uri s3://cig-spider/emr-logs/&apos;;
+clusteravro=commands.getoutput(str2avro);
+#等待集群结束发动邮件
+clusteravrojson = json.loads(clusteravro);
+clusteravroid = clusteravrojson[&quot;ClusterId&quot;];
+waitclusteravroterminated=&apos;aws emr wait cluster-terminated --cluster-id &apos;+clusteravroid;
+commands.getoutput(waitclusteravroterminated);
+sendEmail(sendemail);
+
+
+if __name__ == &apos;__main__&apos;:
+conf_koubei={
+      &apos;str_clusterType&apos;: &apos;m1.xlarge&apos;,
+      &apos;str_process&apos;:&apos;nlp_mr.py&apos;,
+      &apos;str_instanceNum&apos;: &apos;2&apos;,
+      &apos;avro_clusterType&apos;:&apos;m1.xlarge&apos;,
+      &apos;avro_instanceNum&apos;: &apos;2&apos;,
+      &apos;inputURL&apos;: &apos;s3://cig-spider/weiling/in/koubei/&apos;,
+      &apos;outputURL&apos;:&apos;s3://cig-spider/weiling/out/koubei1/&apos;,
+      &apos;outputavroURL&apos;:&apos;s3://cig-spider/weiling/avroout/koubei1/&apos;,
+      &apos;mainclass&apos;:&apos;cn.com.cig.spider.mr.main.GenerateAutohomeKoubeiPoster_NLPMain&apos;
+      };
+conf_post={
+        &apos;str_clusterType&apos;: &apos;m1.xlarge&apos;,
+        &apos;str_process&apos;: &apos;nlp_mr_post1.py&apos;,
+        &apos;str_instanceNum&apos;: &apos;2&apos;,
+        &apos;avro_clusterType&apos;: &apos;m1.xlarge&apos;,
+        &apos;avro_instanceNum&apos;: &apos;2&apos;,
+        &apos;inputURL&apos;: &apos;s3://cig-spider/weiling/in/tiezi/&apos;,
+        &apos;outputURL&apos;: &apos;s3://cig-spider/weiling/out/tiezi1/&apos;,
+        &apos;outputavroURL&apos;: &apos;s3://cig-spider/weiling/avroout/tiezi1/&apos;,
+        &apos;mainclass&apos;:&apos;cn.com.cig.spider.mr.main.GenerateAutohomeBbsPosterShort_NLPMain&apos;
+         };
+emailconf_succ_koubei={
+        &apos;sender&apos; : &quot;kulaohunshou@sina.com&quot;,
+        &apos;receiver&apos; : [&apos;549015543@qq.com&apos;,&apos;suzx@cig.com.cn&apos;],
+        &apos;subject&apos; :&apos;NLP程序成功运行&apos;,
+        &apos;smtpserver&apos; : &quot;smtp.sina.com&quot;,
+        &apos;username&apos; :&quot;kulaohunshou@sina.com&quot;,
+        &apos;password&apos; : &quot;$suzx0323$&quot;,
+        &apos;emailcontent&apos;:&apos;恭喜你程序已经成功跑完，结果文件存在:&apos;+conf_koubei[&apos;outputavroURL&apos;]
+        }
+emailconf_succ_post={
+        &apos;sender&apos; : &quot;kulaohunshou@sina.com&quot;,
+        &apos;receiver&apos; : [&apos;549015543@qq.com&apos;,&apos;suzx@cig.com.cn&apos;],
+        &apos;subject&apos; :&apos;NLP程序成功运行&apos;,
+        &apos;smtpserver&apos; : &quot;smtp.sina.com&quot;,
+        &apos;username&apos; :&quot;kulaohunshou@sina.com&quot;,
+        &apos;password&apos; : &quot;$suzx0323$&quot;,
+        &apos;emailcontent&apos;:&apos;恭喜你程序已经成功跑完，结果文件存在:&apos;+conf_post[&apos;outputavroURL&apos;]
+        }
+emailconf_fail={
+        &apos;sender&apos; : &quot;kulaohunshou@sina.com&quot;,
+        &apos;receiver&apos; : [&apos;549015543@qq.com&apos;,&apos;suzx@cig.com.cn&apos;],
+        &apos;subject&apos; :&apos;NLP程序运行失败&apos;,
+        &apos;smtpserver&apos; : &quot;smtp.sina.com&quot;,
+        &apos;username&apos; :&quot;kulaohunshou@sina.com&quot;,
+        &apos;password&apos; : &quot;$suzx0323$&quot;,
+        &apos;emailcontent&apos;:&apos;您的程序运行失败:&apos;
+        }
+lenofargv= len(sys.argv);
+posterORkoubei=&apos;&apos;;
+if lenofargv&lt;=0:
+    posterORkoubei=raw_input(&quot;Enter your input: &quot;);
+else:
+    posterORkoubei = sys.argv[1];
+    print posterORkoubei
+try:
+    if(posterORkoubei is not None):
+        if(posterORkoubei==&apos;koubei&apos;):
+             nlp(conf_koubei,emailconf_succ_koubei);
+        elif(posterORkoubei==&apos;post&apos;):
+             nlp(conf_post,emailconf_succ_post);
+
+except:
+   sendEmail(emailconf_fail);
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-boge-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -319,66 +531,6 @@
 
 
   
-    <article id="post-myql-存储过程" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/03/27/myql-存储过程/" class="article-date">
-      <time datetime="2017-03-27T01:14:10.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/myql-存储过程/">mysql 存储过程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。<br>实现的功能是从一个表中查询出条数，与传入的参数进行对比，如果满足条件返回什么值，如果不满足返回什么值。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2017/03/27/myql-存储过程/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-MR join" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -421,6 +573,66 @@
       
         <p class="article-more-link">
           <a href="/2017/03/27/MR join/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-myql-存储过程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/27/myql-存储过程/" class="article-date">
+      <time datetime="2017-03-27T01:14:10.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/myql-存储过程/">mysql 存储过程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。<br>实现的功能是从一个表中查询出条数，与传入的参数进行对比，如果满足条件返回什么值，如果不满足返回什么值。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2017/03/27/myql-存储过程/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
