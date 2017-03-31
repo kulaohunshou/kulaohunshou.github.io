@@ -259,61 +259,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-myql-存储过程" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/03/31/myql-存储过程/" class="article-date">
-      <time datetime="2017-03-31T09:57:28.299Z" itemprop="datePublished">2017-03-31</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>DROP PROCEDURE IF EXISTS <code>check_total_count</code>;<br>DELIMITER ;;<br>CREATE PROCEDURE <code>check_total_count</code>(IN table_name varchar(500), IN expected_count int(20))<br>BEGIN<br>    DECLARE actual_count int;<br>    DECLARE msg varchar(255);<br>    SET @SQL=CONCAT(‘select count(*) into @actual_count from ‘,table_name);<br>    PREPARE stmt FROM @SQL;<br>    EXECUTE stmt ;<br>    DEALLOCATE PREPARE stmt;</p>
-<pre><code>IF @actual_count&gt;expected_count 
- THEN
-   SET msg=CONCAT(&apos;ok: &apos;, table_name); 
- ELSE 
-   SET msg=CONCAT(&apos;not ok: expected:&gt;&apos;, expected_count, &apos;,actual:&apos;, @actual_count);
-END IF;
-
-  SELECT msg;
-</code></pre><p>END<br>;;</p>
-<p>use qcds;<br>set @table_name=’question’;<br>set @expected_count=100000;<br>call check_total_count(@table_name,@expected_count);</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-MR join" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -344,6 +289,72 @@ END IF;
       
           
         
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-myql-存储过程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/27/myql-存储过程/" class="article-date">
+      <time datetime="2017-03-27T01:14:10.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/myql-存储过程/">mysql 存储过程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>DROP PROCEDURE IF EXISTS <code>check_total_count</code>;<br>DELIMITER ;;<br>CREATE PROCEDURE <code>check_total_count</code>(IN table_name varchar(500), IN expected_count int(20))<br>BEGIN<br>    DECLARE actual_count int;<br>    DECLARE msg varchar(255);<br>    SET @SQL=CONCAT(‘select count(*) into @actual_count from ‘,table_name);<br>    PREPARE stmt FROM @SQL;<br>    EXECUTE stmt ;<br>    DEALLOCATE PREPARE stmt;</p>
+<pre><code>IF @actual_count&gt;expected_count 
+ THEN
+   SET msg=CONCAT(&apos;ok: &apos;, table_name); 
+ ELSE 
+   SET msg=CONCAT(&apos;not ok: expected:&gt;&apos;, expected_count, &apos;,actual:&apos;, @actual_count);
+END IF;
+
+  SELECT msg;
+</code></pre><p>END<br>;;</p>
+<p>use qcds;<br>set @table_name=’question’;<br>set @expected_count=100000;<br>call check_total_count(@table_name,@expected_count);</p>
+
       
     </div>
     
