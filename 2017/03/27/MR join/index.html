@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/27/MR join/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="简单的map端join和reduce端join代码实现，已经测试通过。">
-<meta property="og:updated_time" content="2017-03-31T10:49:23.329Z">
+<meta property="og:updated_time" content="2017-03-31T10:52:02.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MR map端join和reduce端join">
 <meta name="twitter:description" content="简单的map端join和reduce端join代码实现，已经测试通过。">
@@ -441,8 +441,27 @@ public static class MapJoinMapper extends Mapper&lt;LongWritable, Text, NullWrit
     }
 }
 }
-</code></pre><p>reduce端join：<br>    package org.apache.hadoop.text;<br>    import java.io.IOException;<br>    import java.util.ArrayList;<br>    import java.util.List;<br>    import org.apache.hadoop.conf.Configuration;<br>    import org.apache.hadoop.fs.FileSystem;<br>    import org.apache.hadoop.fs.Path;<br>    import org.apache.hadoop.io.IntWritable;<br>    import org.apache.hadoop.io.LongWritable;<br>    import org.apache.hadoop.io.NullWritable;<br>    import org.apache.hadoop.io.Text;<br>    import org.apache.hadoop.mapreduce.Job;<br>    import org.apache.hadoop.mapreduce.Mapper;<br>    import org.apache.hadoop.mapreduce.Reducer;<br>    import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;</p>
-<pre><code>public class UserCityJoinMapReduce {
+</code></pre><p>reduce端join：</p>
+<pre><code>package org.apache.hadoop.text;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;
+public class UserCityJoinMapReduce {
 
 //定义输入输出路径
     private static final String INPATH = &quot;D:\\hadoop_test\\in1&quot;;
@@ -588,8 +607,29 @@ public static class UserCityJoinReducer extends Reducer&lt;IntWritable, UserCity
     }
 }
 </code></pre><p>}</p>
-<p>用到的实体类：<br>    package org.apache.hadoop.text;<br>    import java.io.IOException;<br>    import java.util.ArrayList;<br>    import java.util.List;<br>    import org.apache.hadoop.conf.Configuration;<br>    import org.apache.hadoop.fs.FileSystem;<br>    import org.apache.hadoop.fs.Path;<br>    import org.apache.hadoop.io.IntWritable;<br>    import org.apache.hadoop.io.LongWritable;<br>    import org.apache.hadoop.io.NullWritable;<br>    import org.apache.hadoop.io.Text;<br>    import org.apache.hadoop.mapreduce.Job;<br>    import org.apache.hadoop.mapreduce.Mapper;<br>    import org.apache.hadoop.mapreduce.Reducer;<br>    import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;</p>
-<pre><code>public class UserCityJoinMapReduce {
+<p>用到的实体类：</p>
+<pre><code>package org.apache.hadoop.text;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;
+
+
+public class UserCityJoinMapReduce {
 
 //定义输入输出路径
     private static final String INPATH = &quot;D:\\hadoop_test\\in1&quot;;
@@ -746,7 +786,7 @@ public static class UserCityJoinReducer extends Reducer&lt;IntWritable, UserCity
         <p><span>本文标题:</span><a href="/2017/03/27/MR join/">MR map端join和reduce端join</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
         <p><span>发布时间:</span>2017-03-27, 09:14:10</p>
-        <p><span>最后更新:</span>2017-03-31, 18:49:23</p>
+        <p><span>最后更新:</span>2017-03-31, 18:52:02</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/27/MR join/" title="MR map端join和reduce端join">http://yoursite.com/2017/03/27/MR join/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/27/MR join/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
