@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/27/myql-存储过程/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。">
-<meta property="og:updated_time" content="2017-03-31T10:05:04.118Z">
+<meta property="og:updated_time" content="2017-03-31T10:56:48.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 存储过程">
 <meta name="twitter:description" content="简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。">
@@ -292,7 +292,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。<br><a id="more"></a><br>DROP PROCEDURE IF EXISTS <code>check_total_count</code>;<br>DELIMITER ;;<br>CREATE PROCEDURE <code>check_total_count</code>(IN table_name varchar(500), IN expected_count int(20))<br>BEGIN<br>    DECLARE actual_count int;<br>    DECLARE msg varchar(255);<br>    SET @SQL=CONCAT(‘select count(*) into @actual_count from ‘,table_name);<br>    PREPARE stmt FROM @SQL;<br>    EXECUTE stmt ;<br>    DEALLOCATE PREPARE stmt;</p>
+        <p>简单的myqsl的存储过程的实现，但是常用的语法基本上都包括了，记录一下，仅供以后参考。<br><a id="more"></a><br>    DROP PROCEDURE IF EXISTS <code>check_total_count</code>;<br>    DELIMITER ;;<br>    CREATE PROCEDURE <code>check_total_count</code>(IN table_name varchar(500), IN expected_count int(20))<br>    BEGIN<br>    DECLARE actual_count int;<br>    DECLARE msg varchar(255);<br>    SET @SQL=CONCAT(‘select count(*) into @actual_count from ‘,table_name);<br>    PREPARE stmt FROM @SQL;<br>    EXECUTE stmt ;<br>    DEALLOCATE PREPARE stmt;</p>
 <pre><code>IF @actual_count&gt;expected_count 
  THEN
    SET msg=CONCAT(&apos;ok: &apos;, table_name); 
@@ -301,9 +301,14 @@
 END IF;
 
   SELECT msg;
-</code></pre><p>END<br>;;</p>
-<p>use qcds;<br>set @table_name=’question’;<br>set @expected_count=100000;<br>call check_total_count(@table_name,@expected_count);</p>
+END
+;;
 
+use qcds;
+set @table_name=&apos;question&apos;;
+set @expected_count=100000;
+call check_total_count(@table_name,@expected_count);
+</code></pre>
       
     </div>
     
@@ -314,7 +319,7 @@ END IF;
         <p><span>本文标题:</span><a href="/2017/03/27/myql-存储过程/">mysql 存储过程</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
         <p><span>发布时间:</span>2017-03-27, 09:14:10</p>
-        <p><span>最后更新:</span>2017-03-31, 18:05:04</p>
+        <p><span>最后更新:</span>2017-03-31, 18:56:48</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/27/myql-存储过程/" title="mysql 存储过程">http://yoursite.com/2017/03/27/myql-存储过程/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/27/myql-存储过程/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
