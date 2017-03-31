@@ -15,13 +15,16 @@
 
 
 
+<meta name="description" content="简单的map端join和reduce端join代码实现，已经测试通过。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MR map端join和reduce端join">
 <meta property="og:url" content="http://yoursite.com/2017/03/27/MR join/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:updated_time" content="2017-03-27T01:14:55.592Z">
+<meta property="og:description" content="简单的map端join和reduce端join代码实现，已经测试通过。">
+<meta property="og:updated_time" content="2017-03-31T10:49:23.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MR map端join和reduce端join">
+<meta name="twitter:description" content="简单的map端join和reduce端join代码实现，已经测试通过。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -289,7 +292,450 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <p>简单的map端join和reduce端join代码实现，已经测试通过。<br><a id="more"></a></p>
+<p>map端join代码：</p>
+<pre><code>package org.apache.hadoop.text;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+public class MyMapJoin {
+// 定义输入路径
+private static String INPUT_PATH1 = &quot;&quot;;
+//加载到内存的表的路径
+private static String INPUT_PATH2 = &quot;&quot;;
+private static String INPUT_PATH3 = &quot;&quot;;
+// 定义输出路径
+private static String OUT_PATH = &quot;&quot;;
+
+public static void main(String[] args) {
+
+    try {
+        // 创建配置信息
+        Configuration conf = new Configuration();
+        // 获取命令行的参数
+        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+        // 当参数违法时，中断程序
+        if (otherArgs.length &lt; 3) {
+            System.err.println(&quot;Usage:MyMapJoin&lt;in1&gt; &lt;in2&gt; &lt;out&gt;&quot;);
+            System.exit(1);
+        }
+
+        // 给路径赋值
+        INPUT_PATH1 = otherArgs[0];
+        INPUT_PATH2 = otherArgs[1];
+        INPUT_PATH3 = otherArgs[2];
+        OUT_PATH = otherArgs[3];
+        // 创建文件系统
+        FileSystem fileSystem = FileSystem.get(conf);
+        // 如果输出目录存在，我们就删除
+        if (fileSystem.exists(new Path(OUT_PATH))) {
+            fileSystem.delete(new Path(OUT_PATH), true);
+        }
+        // 添加到内存中的文件(随便添加多少个文件)
+
+        // 创建任务
+        Job job = Job.getInstance(conf, MyMapJoin.class.getName());
+        job.addCacheFile(new Path(INPUT_PATH2).toUri());
+        job.addCacheFile(new Path(INPUT_PATH3).toUri());
+        // 打成jar包运行，这句话是关键
+        job.setJarByClass(MyMapJoin.class);
+        //1.1 设置输入目录和设置输入数据格式化的类
+        FileInputFormat.addInputPath(job, new Path(INPUT_PATH1));
+        job.setInputFormatClass(TextInputFormat.class);
+
+        //1.2 设置自定义Mapper类和设置map函数输出数据的key和value的类型
+        job.setMapperClass(MapJoinMapper.class);
+        job.setMapOutputKeyClass(NullWritable.class);
+        job.setMapOutputValueClass(Emp_Dep.class);
+
+        //1.3 设置分区和reduce数量
+        job.setPartitionerClass(HashPartitioner.class);
+        job.setNumReduceTasks(0);
+
+        FileOutputFormat.setOutputPath(job, new Path(OUT_PATH));
+        // 提交作业 退出
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public static class MapJoinMapper extends Mapper&lt;LongWritable, Text, NullWritable, Emp_Dep&gt; {
+
+    private Map&lt;Integer, String&gt; joinData = new HashMap&lt;Integer, String&gt;();
+    private Map&lt;Integer, String&gt; joinData1 = new HashMap&lt;Integer, String&gt;();
+    @Override
+    protected void setup(Mapper&lt;LongWritable, Text, NullWritable, Emp_Dep&gt;.Context context) throws IOException, InterruptedException {
+        // 预处理把要关联的文件加载到缓存中
+        URI[] files = context.getCacheFiles(); // getCacheFiles returns null
+        Path file1path = new Path(files[0]);
+        Path file2path = new Path(files[1]);
+        putData2Map(file1path,joinData);
+        putData2Map(file2path,joinData1);
+    }
+
+    private void putData2Map(Path file1path,Map&lt;Integer, String&gt; joinData) throws FileNotFoundException,
+            IOException {
+        // 我们这里只缓存了一个文件，所以取第一个即可，创建BufferReader去读取
+        BufferedReader reader = new BufferedReader(new FileReader(file1path.toString()));
+        String str = null;
+
+        try {
+            // 一行一行读取
+            while ((str = reader.readLine()) != null) {
+                // 对缓存中的表进行分割
+                String[] splits = str.split(&quot;\t&quot;);
+                // 把字符数组中有用的数据存在一个Map中
+                joinData.put(Integer.parseInt(splits[0]), splits[1]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            reader.close();
+        }
+    }
+
+    @Override
+    protected void map(LongWritable key, Text value, Mapper&lt;LongWritable, Text, NullWritable, Emp_Dep&gt;.Context context) throws IOException,
+            InterruptedException {
+        // 获取从HDFS中加载的表
+        String[] values = value.toString().split(&quot;\t&quot;);
+        // 创建Emp_Dep对象
+        Emp_Dep emp_Dep = new Emp_Dep();
+        // 设置属性
+        emp_Dep.setName(values[0]);
+        emp_Dep.setSex(values[1]);
+        emp_Dep.setAge(Integer.parseInt(values[2]));
+        // 获取关联字段depNo，这个字段是关键
+        int depNo = Integer.parseInt(values[3]);
+        // 根据depNo从内存中的关联表中获取要关联的属性depName
+        String depName = joinData.get(depNo);
+        String salary=joinData1.get(depNo);
+        // 设置depNo
+        emp_Dep.setDepNo(depNo);
+        // 设置depName
+        emp_Dep.setDepName(depName);
+        emp_Dep.setSalary(salary);
+
+        // 写出去
+        context.write(NullWritable.get(), emp_Dep);
+    }
+}
+}
+</code></pre><p>reduce端join：<br>    package org.apache.hadoop.text;<br>    import java.io.IOException;<br>    import java.util.ArrayList;<br>    import java.util.List;<br>    import org.apache.hadoop.conf.Configuration;<br>    import org.apache.hadoop.fs.FileSystem;<br>    import org.apache.hadoop.fs.Path;<br>    import org.apache.hadoop.io.IntWritable;<br>    import org.apache.hadoop.io.LongWritable;<br>    import org.apache.hadoop.io.NullWritable;<br>    import org.apache.hadoop.io.Text;<br>    import org.apache.hadoop.mapreduce.Job;<br>    import org.apache.hadoop.mapreduce.Mapper;<br>    import org.apache.hadoop.mapreduce.Reducer;<br>    import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;</p>
+<pre><code>public class UserCityJoinMapReduce {
+
+//定义输入输出路径
+    private static final String INPATH = &quot;D:\\hadoop_test\\in1&quot;;
+    private static final String OUTPATH = &quot;D:\\hadoop_test\\out1&quot;;
+
+    public static void main(String[] args) {
+        try {
+            //创建配置
+            Configuration conf = new Configuration();
+
+            //创建FileSystem
+            FileSystem fileSystem = FileSystem.get(conf);
+            //判断输出文件是否存在，如果存在就进行删除
+            if (fileSystem.exists(new Path(OUTPATH))){
+                fileSystem.delete(new Path(OUTPATH), true);
+            }
+
+            //创建Job
+            Job job = Job.getInstance(conf, MyMapJoin.class.getName());
+
+            //设置输入文件的输入格式
+            job.setInputFormatClass(TextInputFormat.class);
+            //设置输入目录
+            FileInputFormat.setInputPaths(job, new Path(INPATH));
+
+            //设置自定义Mapper
+            job.setMapperClass(UserCityJoinMapper.class);
+
+            //设置Mapper输出的Key和Value
+            job.setMapOutputKeyClass(IntWritable.class);
+            job.setMapOutputValueClass(UserCity.class);
+
+            //设置分区
+            job.setPartitionerClass(HashPartitioner.class);
+            //设置Reducer的个数
+            job.setNumReduceTasks(1);
+
+            //设置自定义的Reducer
+            job.setReducerClass(UserCityJoinReducer.class);
+
+            //设置输出的格式化类
+            job.setOutputFormatClass(TextOutputFormat.class);
+            //设置输出目录
+            FileOutputFormat.setOutputPath(job, new Path(OUTPATH));
+
+            //设置输出的key和value
+            job.setOutputKeyClass(NullWritable.class);
+            job.setOutputValueClass(Text.class);
+
+            //提交任务
+            System.exit(job.waitForCompletion(true) ? 1 : 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+public static class UserCityJoinMapper extends Mapper&lt;LongWritable, Text, IntWritable, UserCity&gt;{
+    //定义输出的key和value
+    private IntWritable outKey = new IntWritable();
+    private UserCity user = null;
+
+    @Override
+    protected void map(LongWritable key, Text value, Mapper&lt;LongWritable, Text, IntWritable, UserCity&gt;.Context context) throws IOException,
+            InterruptedException {
+        //获取行文本内容
+        String line = value.toString();
+        //对行文本内容进行切分
+        String[] splits = line.split(&quot;\t&quot;);
+
+        //对字符串数组进行判断
+        if (splits.length == 2){//如果长度为2就表示城市信息
+            //创建对象
+            user = new UserCity();
+            //设置属性
+            user.setCityNo(splits[0]);
+            user.setCityName(splits[1]);
+            user.setFlag(0);
+            //设置输出的key
+            outKey.set(Integer.parseInt(splits[0]));
+            //把结果写出去
+            context.write(outKey, user);
+        } else if (splits.length == 3){//如果长度为3就表示是User对象
+            //创建对象
+            user = new UserCity();
+            //设置属性
+            user.setUserNo(splits[0]);
+            user.setUserName(splits[1]);
+            //不要忘记设置关联属性
+            user.setCityNo(splits[2]);
+            //设置标志:1表示用户
+            user.setFlag(1);
+
+            //设置输出去key(城市ID)
+            outKey.set(Integer.parseInt(splits[2]));
+            //把结果写出去
+            context.write(outKey, user);
+        }
+    }
+}
+
+/**
+ * 城市和用户是一对多(一个城市对应多个用户),也就是说相同key传过来之后的结果就是一个城市和多个用户(这个至关重要!)
+ * 问题：多对多怎么搞？
+ */
+public static class UserCityJoinReducer extends Reducer&lt;IntWritable, UserCity, NullWritable, Text&gt;{
+
+
+    //定义输出的value
+    private Text outValue = new Text();
+    //城市对象(用于存储唯一的城市)
+    private UserCity city = null;
+    //定义集合用于存储对象
+    private List&lt;UserCity&gt; userCities = new ArrayList&lt;UserCity&gt;();
+
+    @Override
+    protected void reduce(IntWritable key, Iterable&lt;UserCity&gt; values, Reducer&lt;IntWritable, UserCity, NullWritable, Text&gt;.Context context) throws IOException,
+            InterruptedException {
+
+        //使用list集合之前，要清空上一次的数据。
+        userCities.clear();
+
+        //遍历values，把结果装到List集合中
+        for (UserCity u : values){//这个values集合中只有一个城市对象，多个用户对象
+
+            if (u.getFlag() == 0){//如果标志为0表示城市对象,这个是唯一的City对象
+                city = new UserCity(u);
+            } else {//除了唯一的City对象外，其他的都是用户对象，把这些用户对象都添加到集合里
+                userCities.add(new UserCity(u));
+            }
+        }
+
+        //遍历集合(把用户对象的城市信息都给填补上)
+        for (UserCity user : userCities){
+
+            //给用户对象设置城市信息
+            user.setCityName(city.getCityName());
+            //设置写出去value
+            outValue.set(user.toString());
+            //把结果写出去
+            context.write(NullWritable.get(), outValue);
+        }
+    }
+}
+</code></pre><p>}</p>
+<p>用到的实体类：<br>    package org.apache.hadoop.text;<br>    import java.io.IOException;<br>    import java.util.ArrayList;<br>    import java.util.List;<br>    import org.apache.hadoop.conf.Configuration;<br>    import org.apache.hadoop.fs.FileSystem;<br>    import org.apache.hadoop.fs.Path;<br>    import org.apache.hadoop.io.IntWritable;<br>    import org.apache.hadoop.io.LongWritable;<br>    import org.apache.hadoop.io.NullWritable;<br>    import org.apache.hadoop.io.Text;<br>    import org.apache.hadoop.mapreduce.Job;<br>    import org.apache.hadoop.mapreduce.Mapper;<br>    import org.apache.hadoop.mapreduce.Reducer;<br>    import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;<br>    import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;</p>
+<pre><code>public class UserCityJoinMapReduce {
+
+//定义输入输出路径
+    private static final String INPATH = &quot;D:\\hadoop_test\\in1&quot;;
+    private static final String OUTPATH = &quot;D:\\hadoop_test\\out1&quot;;
+
+    public static void main(String[] args) {
+        try {
+            //创建配置
+            Configuration conf = new Configuration();
+
+            //创建FileSystem
+            FileSystem fileSystem = FileSystem.get(conf);
+            //判断输出文件是否存在，如果存在就进行删除
+            if (fileSystem.exists(new Path(OUTPATH))){
+                fileSystem.delete(new Path(OUTPATH), true);
+            }
+
+            //创建Job
+            Job job = Job.getInstance(conf, MyMapJoin.class.getName());
+
+            //设置输入文件的输入格式
+            job.setInputFormatClass(TextInputFormat.class);
+            //设置输入目录
+            FileInputFormat.setInputPaths(job, new Path(INPATH));
+
+            //设置自定义Mapper
+            job.setMapperClass(UserCityJoinMapper.class);
+
+            //设置Mapper输出的Key和Value
+            job.setMapOutputKeyClass(IntWritable.class);
+            job.setMapOutputValueClass(UserCity.class);
+
+            //设置分区
+            job.setPartitionerClass(HashPartitioner.class);
+            //设置Reducer的个数
+            job.setNumReduceTasks(1);
+
+            //设置自定义的Reducer
+            job.setReducerClass(UserCityJoinReducer.class);
+
+            //设置输出的格式化类
+            job.setOutputFormatClass(TextOutputFormat.class);
+            //设置输出目录
+            FileOutputFormat.setOutputPath(job, new Path(OUTPATH));
+
+            //设置输出的key和value
+            job.setOutputKeyClass(NullWritable.class);
+            job.setOutputValueClass(Text.class);
+
+            //提交任务
+            System.exit(job.waitForCompletion(true) ? 1 : 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+public static class UserCityJoinMapper extends Mapper&lt;LongWritable, Text, IntWritable, UserCity&gt;{
+    //定义输出的key和value
+    private IntWritable outKey = new IntWritable();
+    private UserCity user = null;
+
+    @Override
+    protected void map(LongWritable key, Text value, Mapper&lt;LongWritable, Text, IntWritable, UserCity&gt;.Context context) throws IOException,
+            InterruptedException {
+        //获取行文本内容
+        String line = value.toString();
+        //对行文本内容进行切分
+        String[] splits = line.split(&quot;\t&quot;);
+
+        //对字符串数组进行判断
+        if (splits.length == 2){//如果长度为2就表示城市信息
+            //创建对象
+            user = new UserCity();
+            //设置属性
+            user.setCityNo(splits[0]);
+            user.setCityName(splits[1]);
+            user.setFlag(0);
+            //设置输出的key
+            outKey.set(Integer.parseInt(splits[0]));
+            //把结果写出去
+            context.write(outKey, user);
+        } else if (splits.length == 3){//如果长度为3就表示是User对象
+            //创建对象
+            user = new UserCity();
+            //设置属性
+            user.setUserNo(splits[0]);
+            user.setUserName(splits[1]);
+            //不要忘记设置关联属性
+            user.setCityNo(splits[2]);
+            //设置标志:1表示用户
+            user.setFlag(1);
+
+            //设置输出去key(城市ID)
+            outKey.set(Integer.parseInt(splits[2]));
+            //把结果写出去
+            context.write(outKey, user);
+        }
+    }
+}
+
+/**
+ * 城市和用户是一对多(一个城市对应多个用户),也就是说相同key传过来之后的结果就是一个城市和多个用户(这个至关重要!)
+ * 问题：多对多怎么搞？
+ */
+public static class UserCityJoinReducer extends Reducer&lt;IntWritable, UserCity, NullWritable, Text&gt;{
+
+
+    //定义输出的value
+    private Text outValue = new Text();
+    //城市对象(用于存储唯一的城市)
+    private UserCity city = null;
+    //定义集合用于存储对象
+    private List&lt;UserCity&gt; userCities = new ArrayList&lt;UserCity&gt;();
+
+    @Override
+    protected void reduce(IntWritable key, Iterable&lt;UserCity&gt; values, Reducer&lt;IntWritable, UserCity, NullWritable, Text&gt;.Context context) throws IOException,
+            InterruptedException {
+
+        //使用list集合之前，要清空上一次的数据。
+        userCities.clear();
+
+        //遍历values，把结果装到List集合中
+        for (UserCity u : values){//这个values集合中只有一个城市对象，多个用户对象
+
+            if (u.getFlag() == 0){//如果标志为0表示城市对象,这个是唯一的City对象
+                city = new UserCity(u);
+            } else {//除了唯一的City对象外，其他的都是用户对象，把这些用户对象都添加到集合里
+                userCities.add(new UserCity(u));
+            }
+        }
+
+        //遍历集合(把用户对象的城市信息都给填补上)
+        for (UserCity user : userCities){
+
+            //给用户对象设置城市信息
+            user.setCityName(city.getCityName());
+            //设置写出去value
+            outValue.set(user.toString());
+            //把结果写出去
+            context.write(NullWritable.get(), outValue);
+        }
+    }
+}
+</code></pre><p>}</p>
+
       
     </div>
     
@@ -300,7 +746,7 @@
         <p><span>本文标题:</span><a href="/2017/03/27/MR join/">MR map端join和reduce端join</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
         <p><span>发布时间:</span>2017-03-27, 09:14:10</p>
-        <p><span>最后更新:</span>2017-03-27, 09:14:55</p>
+        <p><span>最后更新:</span>2017-03-31, 18:49:23</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/27/MR join/" title="MR map端join和reduce端join">http://yoursite.com/2017/03/27/MR join/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/27/MR join/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
