@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
+<meta name="description" content="DROP PROCEDURE IF EXISTS check_total_count;DELIMITER ;;CREATE PROCEDURE check_total_count(IN table_name varchar(500), IN expected_count int(20))BEGIN    DECLARE actual_count int;    DECLARE msg varcha">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么要建立自己的博客">
-<meta property="og:url" content="http://yoursite.com/2017/03/21/bulid-blog/index.html">
+<meta property="og:title" content="Blog">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/mysql_存储过程/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
-<meta property="og:updated_time" content="2017-03-21T11:21:35.131Z">
+<meta property="og:description" content="DROP PROCEDURE IF EXISTS check_total_count;DELIMITER ;;CREATE PROCEDURE check_total_count(IN table_name varchar(500), IN expected_count int(20))BEGIN    DECLARE actual_count int;    DECLARE msg varcha">
+<meta property="og:updated_time" content="2017-04-07T03:00:14.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么要建立自己的博客">
-<meta name="twitter:description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
+<meta name="twitter:title" content="Blog">
+<meta name="twitter:description" content="DROP PROCEDURE IF EXISTS check_total_count;DELIMITER ;;CREATE PROCEDURE check_total_count(IN table_name varchar(500), IN expected_count int(20))BEGIN    DECLARE actual_count int;    DECLARE msg varcha">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>为什么要建立自己的博客 | Blog</title>
+<title>Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -256,11 +256,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-bulid-blog" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql_存储过程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/21/bulid-blog/" class="article-date">
-      <time datetime="2017-03-21T06:32:10.000Z" itemprop="datePublished">2017-03-21</time>
+      <a href="/2017/04/07/mysql_存储过程/" class="article-date">
+      <time datetime="2017-04-07T03:00:14.228Z" itemprop="datePublished">2017-04-07</time>
 </a>
 
 
@@ -271,31 +271,20 @@
       <input type="hidden" class="isFancy" />
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      为什么要建立自己的博客
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。<br><a id="more"></a><br>最主要的还是自己有点懒，最近突然觉得，要做出来点改变，来打破目前的生活状态，可能也是自己对自己目前的状态不太满意。</p>
-<p>随着程序员做的时间越来越长，接触的东西越来越多，有很多东西用的时候，觉得挺熟练的，等过了一段时间以后，再去用之前的知识的时候，发现脑子只剩下了梗概，完全没有了血肉。</p>
-<p>这个时候要做的就是去网上搜索相应的技术博客，接下来的就是把好的技术博客放到自己的浏览器收藏夹里，假装自己还会回来看的样子。</p>
-<p>却往往只是假装而已，几乎从没有回来看过，所以觉得还是应该自己建一个 自己的博客，把自己喜欢的文章，自己工作中遇到的问题，归纳到自己的博客上来。这样不仅可以，起来一个知识点循环往复的作用，也可以作为将来遇到同样的问题的时候做参考，更能很好的与其他人分享，帮助自己的问题也帮助别人，何乐而不为？</p>
+        <p>DROP PROCEDURE IF EXISTS <code>check_total_count</code>;<br>DELIMITER ;;<br>CREATE PROCEDURE <code>check_total_count</code>(IN table_name varchar(500), IN expected_count int(20))<br>BEGIN<br>    DECLARE actual_count int;<br>    DECLARE msg varchar(255);<br>    SET @SQL=CONCAT(‘select count(*) into @actual_count from ‘,table_name);<br>    PREPARE stmt FROM @SQL;<br>    EXECUTE stmt ;<br>    DEALLOCATE PREPARE stmt;</p>
+<pre><code>IF @actual_count&gt;expected_count 
+ THEN
+   SET msg=CONCAT(&apos;ok: &apos;, table_name); 
+ ELSE 
+   SET msg=CONCAT(&apos;not ok: expected:&gt;&apos;, expected_count, &apos;,actual:&apos;, @actual_count);
+END IF;
+
+  SELECT msg;
+</code></pre><p>END<br>;;</p>
+<p>use qcds;<br>set @table_name=’question’;<br>set @expected_count=100000;<br>call check_total_count(@table_name,@expected_count);</p>
 
       
     </div>
@@ -304,13 +293,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/21/bulid-blog/">为什么要建立自己的博客</a></p>
+        <p><span>本文标题:</span><a href="/2017/04/07/mysql_存储过程/"></a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
-        <p><span>发布时间:</span>2017-03-21, 14:32:10</p>
-        <p><span>最后更新:</span>2017-03-21, 19:21:35</p>
+        <p><span>发布时间:</span>2017-04-07, 11:00:14</p>
+        <p><span>最后更新:</span>2017-04-07, 11:00:14</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/21/bulid-blog/" title="为什么要建立自己的博客">http://yoursite.com/2017/03/21/bulid-blog/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/21/bulid-blog/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/07/mysql_存储过程/" title="">http://yoursite.com/2017/04/07/mysql_存储过程/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/07/mysql_存储过程/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -322,12 +311,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/27/MR join/">
-                    MR map端join和reduce端join
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/04/07/java-常见误区与细节/">
+                    java 常见误区与细节
                 </a>
             </div>
-        
         
     </nav>
 
@@ -373,7 +362,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"为什么要建立自己的博客　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -393,15 +382,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/27/MR join/" title="上一篇: MR map端join和reduce端join">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/04/07/java-常见误区与细节/" title="下一篇: java 常见误区与细节">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>guanxi.html</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="echart/echart-normal/echarts-all-3.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="echart/echart-normal/dataTool.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+           function contains(arr, obj) {  
+			    var i = arr.length;  
+			    while (i--) {  
+			        if (arr[i] === obj) {  
+			            return true;  
+			        }  
+			    }  
+			    return false;  
+		    } 
+		    alert(window.screen.availHeight);
+	       var myChart = echarts.init(document.getElementById('main111'));
+		   myChart.showLoading();
+		   $.get('data/compete-v6.gexf', function (xml) {
+			    myChart.hideLoading();
+			    
+			    var graph = echarts.dataTool.gexf.parse(xml);
+			    var categories = [];
+                var i=0;
+			    graph.nodes.forEach(function (node) {
+			        node.itemStyle = null;
+			        node.symbolSize = node.symbolSize;
+			        node.value = node.symbolSize;
+			        node.category = node.attributes.modularity_class;
+			        
+			        if(!contains(categories,node.category)){
+			           categories[i]=node.category;
+			            i++;
+			         }
+			        node.x = node.y = null;
+			        node.draggable = true;
+			    });
+			    
+			    for (var i = 0; i < categories.length; i++) {
+			        categories[i] = {
+			            name: '分类' + i
+			        };
+			    }
+			    option = {
+			        title: {
+			            text: '车型竞争关系图谱',
+			            subtext: 'powerd by 大数据中心',
+			            top: 'top',
+			            left: 'left'
+			        },
+			        tooltip: {},
+			        toolbox: {
+				        show : true,
+				        feature : {
+				            mark : {show: true},
+				            dataView : {show: true, readOnly: false},
+				            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+				            restore : {show: true},
+				            saveAsImage : {show: true}
+				        }
+				    },
+			        legend: [{
+			            data: categories.map(function (a) {
+			                return a.name;
+			            }),
+			             orient: 'vertical',
+			             x: 'right',
+			             y:'40'
+			        }],
+			        animation: false,
+			        series : [
+			            {
+			                name: '车型竞争关系图谱',
+			                type: 'graph',
+			                layout: 'force',
+			                data: graph.nodes,
+			                links: graph.links,
+			                categories: categories,
+			                roam: true,
+			                label: {
+			                    normal: {
+			                        position: 'right'
+			                    }
+			                },
+			                force: {
+			                    repulsion: 100
+			                }
+			            }
+			        ]
+			    };
+			    myChart.setOption(option);
+			}, 'xml');
+
+		})
+    </script>
+  </head>
+  <body>
+      <div id="main111" style="width:100%;height:600px;margin: 0px;padding: 0px"></div>
+  </body>
+</html>
