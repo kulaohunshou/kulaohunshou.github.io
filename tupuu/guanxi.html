@@ -21,7 +21,6 @@
 		   myChart.showLoading();
 		   $.get('data/compete-v6.gexf', function (xml) {
 			    myChart.hideLoading();
-			    
 			    var graph = echarts.dataTool.gexf.parse(xml);
 			    var categories = [];
                 var i=0;
@@ -45,6 +44,7 @@
 			        };
 			    }
 			    option = {
+			        //backgroundColor: '#1b1b1b',//背景色
 			        title: {
 			            text: '汽车产品竞争云图',
 			            subtext: 'powerd by CIG-大数据中心',
@@ -85,6 +85,7 @@
 			                        position: 'right'
 			                    }
 			                },
+			                focusNodeAdjacency: true,
 			                force: {
 			                    repulsion: 100
 			                }
