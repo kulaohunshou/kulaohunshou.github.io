@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
+<meta name="description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么要建立自己的博客">
-<meta property="og:url" content="http://yoursite.com/2017/03/21/bulid-blog/index.html">
+<meta property="og:title" content="为mysql数据库建立索引">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/为mysql数据库建立索引/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
-<meta property="og:updated_time" content="2017-03-21T11:21:35.131Z">
+<meta property="og:description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
+<meta property="og:updated_time" content="2017-05-02T02:44:30.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么要建立自己的博客">
-<meta name="twitter:description" content="想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。">
+<meta name="twitter:title" content="为mysql数据库建立索引">
+<meta name="twitter:description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>为什么要建立自己的博客 | Blog</title>
+<title>为mysql数据库建立索引 | Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -256,11 +256,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-bulid-blog" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-为mysql数据库建立索引" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/03/21/bulid-blog/" class="article-date">
-      <time datetime="2017-03-21T06:32:10.000Z" itemprop="datePublished">2017-03-21</time>
+      <a href="/2017/05/02/为mysql数据库建立索引/" class="article-date">
+      <time datetime="2017-05-02T02:43:44.000Z" itemprop="datePublished">2017-05-02</time>
 </a>
 
 
@@ -275,7 +275,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      为什么要建立自己的博客
+      为mysql数据库建立索引
     </h1>
   
 
@@ -292,10 +292,49 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。<br><a id="more"></a><br>最主要的还是自己有点懒，最近突然觉得，要做出来点改变，来打破目前的生活状态，可能也是自己对自己目前的状态不太满意。</p>
-<p>随着程序员做的时间越来越长，接触的东西越来越多，有很多东西用的时候，觉得挺熟练的，等过了一段时间以后，再去用之前的知识的时候，发现脑子只剩下了梗概，完全没有了血肉。</p>
-<p>这个时候要做的就是去网上搜索相应的技术博客，接下来的就是把好的技术博客放到自己的浏览器收藏夹里，假装自己还会回来看的样子。</p>
-<p>却往往只是假装而已，几乎从没有回来看过，所以觉得还是应该自己建一个 自己的博客，把自己喜欢的文章，自己工作中遇到的问题，归纳到自己的博客上来。这样不仅可以，起来一个知识点循环往复的作用，也可以作为将来遇到同样的问题的时候做参考，更能很好的与其他人分享，帮助自己的问题也帮助别人，何乐而不为？</p>
+        <p>为mysql数据库建立索引<br>前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。<br><a id="more"></a><br>  最普通的情况，是为出现在where子句的字段建一个索引。为方便讲述，我们先建立一个如下的表。</p>
+<p>Code代码如下:<br>CREATE TABLE mytable (<br>　id serial primary key,<br>　category_id int not null default 0,<br>　user_id int not null default 0,<br>　adddate int not null default 0<br>);</p>
+<p>  很简单吧，不过对于要说明这个问题，已经足够了。如果你在查询时常用类似以下的语句：</p>
+<p>SELECT * FROM mytable WHERE category_id=1; </p>
+<p>  最直接的应对之道，是为category_id建立一个简单的索引：</p>
+<p>CREATE INDEX mytable_categoryid<br>　ON mytable (category_id);</p>
+<p>  OK，搞定？先别高兴，如果你有不止一个选择条件呢？例如：</p>
+<p>SELECT * FROM mytable WHERE category_id=1 AND user_id=2;</p>
+<p>  你的第一反应可能是，再给user_id建立一个索引。不好，这不是一个最佳的方法。你可以建立多重的索引。</p>
+<p>CREATE INDEX mytable_categoryid_userid ON mytable (category_id,user_id);</p>
+<p>  注意到我在命名时的习惯了吗？我使用”表名<em>字段1名</em>字段2名”的方式。你很快就会知道我为什么这样做了。</p>
+<p>  现在你已经为适当的字段建立了索引，不过，还是有点不放心吧，你可能会问，数据库会真正用到这些索引吗？测试一下就OK，对于大多数的数据库来说，这是很容易的，只要使用EXPLAIN命令：</p>
+<p>EXPLAIN</p>
+<p>　SELECT * FROM mytable<br>　　WHERE category_id=1 AND user_id=2;</p>
+<p>This is what Postgres 7.1 returns (exactly as I expected) </p>
+<p>　NOTICE: QUERY PLAN:</p>
+<p>Index Scan using mytable_categoryid_userid on<br>  mytable (cost=0.00..2.02 rows=1 width=16)</p>
+<p>EXPLAIN</p>
+<p>  以上是postgres的数据，可以看到该数据库在查询的时候使用了一个索引（一个好开始），而且它使用的是我创建的第二个索引。看到我上面命名的好处了吧，你马上知道它使用适当的索引了。</p>
+<p>  接着，来个稍微复杂一点的，如果有个ORDER BY字句呢？不管你信不信，大多数的数据库在使用order by的时候，都将会从索引中受益。</p>
+<p>SELECT * FROM mytable<br>  WHERE category_id=1 AND user_id=2<br>    ORDER BY adddate DESC;</p>
+<p>  有点迷惑了吧？很简单，就象为where字句中的字段建立一个索引一样，也为ORDER BY的字句中的字段建立一个索引：</p>
+<p>CREATE INDEX mytable_categoryid_userid_adddate<br>  ON mytable (category_id,user_id,adddate);</p>
+<p>  注意: “mytable_categoryid_userid_adddate” 将会被截短为</p>
+<p>“mytable_categoryid_userid_addda”</p>
+<p>CREATE</p>
+<p>  EXPLAIN SELECT * FROM mytable<br>　　WHERE category_id=1 AND user_id=2<br>　　　ORDER BY adddate DESC;</p>
+<p>　NOTICE: QUERY PLAN:</p>
+<p>　Sort (cost=2.03..2.03 rows=1 width=16)<br>　　-&gt; Index Scan using mytable_categoryid_userid_addda<br>　　　　on mytable (cost=0.00..2.02 rows=1 width=16)</p>
+<p>EXPLAIN</p>
+<p>  看看EXPLAIN的输出，好象有点恐怖啊，数据库多做了一个我们没有要求的排序，这下知道性能如何受损了吧，看来我们对于数据库的自身运作是有点过于乐观了，那么，给数据库多一点提示吧。</p>
+<p>  为了跳过排序这一步，我们并不需要其它另外的索引，只要将查询语句稍微改一下。这里用的是postgres，我们将给该数据库一个额外的提示–在ORDER BY语句中，加入where语句中的字段。这只是一个技术上的处理，并不是必须的，因为实际上在另外两个字段上，并不会有任何的排序操作，不过如果加入，postgres将会知道哪些是它应该做的。</p>
+<p>EXPLAIN SELECT * FROM mytable<br>  WHERE category_id=1 AND user_id=2<br>　　ORDER BY category_id DESC,user_id DESC,adddate DESC;</p>
+<p>NOTICE: QUERY PLAN:</p>
+<p>Index Scan Backward using<br>　mytable_categoryid_userid_addda on mytable<br>　  (cost=0.00..2.02 rows=1 width=16)</p>
+<p>EXPLAIN</p>
+<p>  现在使用我们料想的索引了，而且它还挺聪明，知道可以从索引后面开始读，从而避免了任何的排序。</p>
+<p>  以上说得细了一点，不过如果你的数据库非常巨大，并且每日的页面请求达上百万算，我想你会获益良多的。不过，如果你要做更为复杂的查询呢，例如将多张表结合起来查询，特别是where限制字句中的字段是来自不止一个表格时，应该怎样处理呢？我通常都尽量避免这种做法，因为这样数据库要将各个表中的东西都结合起来，然后再排除那些不合适的行，搞不好开销会很大。</p>
+<p>  如果不能避免，你应该查看每张要结合起来的表，并且使用以上的策略来建立索引，然后再用EXPLAIN命令验证一下是否使用了你料想中的索引。如果是的话，就OK。不是的话，你可能要建立临时的表来将他们结合在一起，并且使用适当的索引。</p>
+<p>  要注意的是，建立太多的索引将会影响更新和插入的速度，因为它需要同样更新每个索引文件。对于一个经常需要更新和插入的表格，就没有必要为一个很少使用的where字句单独建立索引了，对于比较小的表，排序的开销不会很大，也没有必要建立另外的索引。</p>
+<p>  以上介绍的只是一些十分基本的东西，其实里面的学问也不少，单凭EXPLAIN我们是不能判定该方法是否就是最优化的，每个数据库都有自己的一些优化器，虽然可能还不太完善，但是它们都会在查询时对比过哪种方式较快，在某些情况下，建立索引的话也未必会快，例如索引放在一个不连续的存储空间时，这会增加读磁盘的负担，因此，哪个是最优，应该通过实际的使用环境来检验。</p>
+<p>  在刚开始的时候，如果表不大，没有必要作索引，我的意见是在需要的时候才作索引，也可用一些命令来优化表，例如MySQL可用”OPTIMIZE TABLE”。</p>
+<p>  综上所述，在如何为数据库建立恰当的索引方面，你应该有一些基本的概念了。</p>
 
       
     </div>
@@ -304,13 +343,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/03/21/bulid-blog/">为什么要建立自己的博客</a></p>
+        <p><span>本文标题:</span><a href="/2017/05/02/为mysql数据库建立索引/">为mysql数据库建立索引</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
-        <p><span>发布时间:</span>2017-03-21, 14:32:10</p>
-        <p><span>最后更新:</span>2017-03-21, 19:21:35</p>
+        <p><span>发布时间:</span>2017-05-02, 10:43:44</p>
+        <p><span>最后更新:</span>2017-05-02, 10:44:30</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/03/21/bulid-blog/" title="为什么要建立自己的博客">http://yoursite.com/2017/03/21/bulid-blog/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/21/bulid-blog/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/02/为mysql数据库建立索引/" title="为mysql数据库建立索引">http://yoursite.com/2017/05/02/为mysql数据库建立索引/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/02/为mysql数据库建立索引/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -322,12 +361,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/03/27/myql-存储过程/">
-                    mysql 存储过程
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/">
+                    sql之left join、right join、inner join的区别
                 </a>
             </div>
-        
         
     </nav>
 
@@ -373,7 +412,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"为什么要建立自己的博客　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"为mysql数据库建立索引　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -393,15 +432,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/03/27/myql-存储过程/" title="上一篇: mysql 存储过程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" title="下一篇: sql之left join、right join、inner join的区别">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
