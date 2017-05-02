@@ -15,16 +15,19 @@
 
 
 
-<meta name="description" content="1   在Java中，没有goto语句。因为大量使用goto语句会降低程序的可读性和可维护性，所以Java语言取消了goto的使用。同时，为了避免程序员自行使用goto所带来的混乱，Java语言仍将goto定义为一个关键字，但是没有定义任何语法，故称为“保留字”。">
+<meta name="description" content="sql之left join、right join、inner join的区别
+left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java 常见误区与细节">
-<meta property="og:url" content="http://yoursite.com/2017/04/07/java-常见误区与细节/index.html">
+<meta property="og:title" content="sql之left join、right join、inner join的区别">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="1   在Java中，没有goto语句。因为大量使用goto语句会降低程序的可读性和可维护性，所以Java语言取消了goto的使用。同时，为了避免程序员自行使用goto所带来的混乱，Java语言仍将goto定义为一个关键字，但是没有定义任何语法，故称为“保留字”。">
-<meta property="og:updated_time" content="2017-04-07T02:26:35.488Z">
+<meta property="og:description" content="sql之left join、right join、inner join的区别
+left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
+<meta property="og:updated_time" content="2017-05-02T01:13:04.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java 常见误区与细节">
-<meta name="twitter:description" content="1   在Java中，没有goto语句。因为大量使用goto语句会降低程序的可读性和可维护性，所以Java语言取消了goto的使用。同时，为了避免程序员自行使用goto所带来的混乱，Java语言仍将goto定义为一个关键字，但是没有定义任何语法，故称为“保留字”。">
+<meta name="twitter:title" content="sql之left join、right join、inner join的区别">
+<meta name="twitter:description" content="sql之left join、right join、inner join的区别
+left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>java 常见误区与细节 | Blog</title>
+<title>sql之left join、right join、inner join的区别 | Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -256,11 +259,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-java-常见误区与细节" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-sql之left-join、right-join、inner-join的区别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/04/07/java-常见误区与细节/" class="article-date">
-      <time datetime="2017-04-07T02:23:02.000Z" itemprop="datePublished">2017-04-07</time>
+      <a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" class="article-date">
+      <time datetime="2017-05-02T01:05:34.000Z" itemprop="datePublished">2017-05-02</time>
 </a>
 
 
@@ -275,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java 常见误区与细节
+      sql之left join、right join、inner join的区别
     </h1>
   
 
@@ -292,59 +295,53 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1   在Java中，没有goto语句。因为大量使用goto语句会降低程序的可读性和可维护性，所以Java语言取消了goto的使用。同时，为了避免程序员自行使用goto所带来的混乱，Java语言仍将goto定义为一个关键字，但是没有定义任何语法，故称为“保留字”。<br><a id="more"></a></p>
-<p>2   true、false和null在IDE中虽然以不同的颜色显示，但是并不是关键字，而是“字面常量”，就和String类型的abc一样。</p>
-<p>3   定义名称时尽量避免使用$，因为编译器在对.java文件进行编译的时候，会将”$”编译成顶层类型与底层类型的连接符。见下例：</p>
-<pre><code>package com.laixintao.Test;
-
-public class Outer$Inner {
-    public static void main(String[] args) {
-        Outer o = new Outer();
-        Outer.Inner i = o.new Inner();
-        i.innerPrint();
-    }
-}
-
-class Outer {
-    class Inner {
-        void innerPrint() {
-            System.out.println(&quot;Inner Print!&quot;);
-        }
-    }
-}
-</code></pre><p>在编译(javac Test3.java)这段代码的时候，编译器会报以下错误：Test.java:12: 错误: 类重复: com.laixintao.Test.Outer.Inner class Inner{ ^</p>
-<p>4   Unicode转义字符处理的非常早，在解析程序之前。例如：</p>
-<pre><code>// char c1 = &apos;u00a&apos;;
-// char c2 = &apos;u00d&apos;;
-</code></pre><p>在程序中出现这两行代码编译报错。这两个Unicode码分别表示”换行”和”回车”，所以，在编译器编译的时候，代码是这样的：</p>
-<pre><code>// char c1 = &apos;&apos;;
-// char c2 = &apos;&apos;;
-</code></pre><p>5   Unicode码使用16位字符编码，在Java中用char类型来表示。现在Unicode已经扩展到一百万个字符，超出16位限制的成为增补字符。所有增补字符都不能用字符常量来表示。</p>
-<p>6   当short，byte，char参加运算时，结果为int型，而非与较高的类型相同。如果变量是byte，short，byte类型，当对其赋予编译时期的常量，而该常量又没有超过变量的取值范围时，编译器就可以进行隐式的收缩转换。这种隐式的收缩转换是安全的，因为该收缩转换只适用于变量的赋值，而不适用于方法调用语句，即不适用于方法调用时的参数传递。（详见java中默认类型转换的小问题）</p>
-<p>7   注意char类型，这是一个无符号类型。因此，char与short或char与byte之间的转换必须显示地使用类型转换。 从byte到char的转换为扩展收缩转换，该转换比较特殊，即先将byte扩展转换到int，然后再收缩到char。</p>
-<p>8   在整型数据间的扩展转换中，如果操作数是char类型（无符号类型），则进行无符号扩展，扩展位为0.如果操作数是byte，short或int（有符号类型），则进行有符号扩展，扩展位为该变量的符号位。</p>
-<p>9   整型数据之间的收缩转换，仅仅是截断并丢弃高位，不做任何其他处理。</p>
-<p>10   0.1+0.2不等于0.3.System.out.println((double)0.1+(double)0.2);这条语句的输出结果是0.30000000000000004。因为计算机使用二进制来存储数据，而很多小数都不能够准确地使用二进制来表示（事实上，大多数地小数都是近似的），就像使用十进制小数不能准确地表示1/3这样地分数一样。大多数地浮点型，在计算机中只是近似地存储其值，而不像整型那样准确地存储。又例，这是一个死循环：for(float f = 10.1f;f != 11;f+=0.1f){}</p>
-<p>11 float类型可以保留7～8个有效数字，而double类型可以保留15～16个有效数字，因而当int类型或long类型数值多于double或float地有效数字时，该值的一些最低有效位就会丢失，从而造成精度丢失，这时，就会采用IEEE754最近舍入模式，提取与该整型值最接近的浮点值。尽管整型向浮点型的转换属于扩展转换，但当数值很大或很小（绝对值很大）时，就会产生一定的精度丢失。</p>
-<p>12  i+++j如何计算？（这个问题在C/C++）中讨论是没有多大意义的，因为C/C++依赖于实现的硬件结构，不同的环境结果也会不同。不过在Java中，这个结果是固定的，不受其运行的硬件环境与平台的影响） 答：根据贪心规则，前置＋＋优于后置＋＋，结果是（i++）＋j</p>
-<p>13  i++和++i其实都是先＋1，再赋值。++i，没什么好说的；i++,以j=i++;为例在底层的实现是：temp = i;i = i + 1; j = temp; 所以，i=15;i=i++;这个表达式的结果是15.（因为加一之后又执行了一次赋值，从16变回15）</p>
-<p>14   +0与-0在浮点类型变量存储中，符号位是不同的。当-0和+0参与浮点类型的相关运算（例如相除与求余运算）时，可以产生不同的结果。</p>
-<p>15   浮点的相除与求余运算不同与整型的相除与求余运算，当除数为0时，浮点运算不会产生ArithmeticException异常。</p>
-<p>16   String类是非可变类，其对象一旦创建，就不可销毁。String类那些看似修改字符序列的方法实际上都是返回新创建的String对象，而不是修改自身对象。</p>
-<p>17   由于String对象是不可改变的，因此具有线程安全性，可以自由地实现共享。</p>
-<p>18   在String类内部，是使用一个字符数组（char[]）来维护字符序列的。String的最大长度也就是字符数组的最大长度，理论上最大长度为int类型的最大值，即2147483647.在实际中，一般可获取的最大值小于理论最大值。</p>
-<p>19  main()方法在表现行为上，与其他方法基本相同，可以重载，由其他方法调用，继承，隐藏，也可以抛出异常，带有类型参数。我们也可以在一个程序中通过反射来调用main方法（或其他方法）。</p>
-<p>20 当两个或多个方法的名称相同，而参数列表不同时，这几个方法就构成了重载。重载方法可以根据参数列表对应的类型与参数的个数来区分，但是，参数的名称、方法的返回类型，方法的异常列表与类型参数不能作为区分重载方法的条件。</p>
-<p>21   究竟选择哪个方法调用，顺序是这样的：</p>
-<p>在第一阶段，自动装箱（拆箱）与可变参数不予考虑，搜索对应形参类型可以匹配实参类型并且形参个数与实参个数相同的方法；<br>如果在步骤一不存在符合条件的方法，在第二阶段，自动装箱与拆箱将会执行。<br>如果在步骤二中不存在符合条件的方法，在第三阶段，可变参数的方法将会考虑。<br>如果3个阶段都没有搜索到符合条件的方法，将会产生编译错误。如果如何条件的方法多于一个，将会选择最明确的方法。最明确的方法定义为：如果A方法的形参列表类型对应的都可以赋值给B方法的形参列表类型，则A方法比B方法明确。如果无法选出最明确的方法，则会产生编译错误。<br>22   重写和隐藏的本质区别是：重写是动态绑定的，根据运行时引用所指向对象的实际类型来决定调用相关类的成员。而隐藏是静态绑定的，根据编译时引用的静态类型来决定调用的相关成员。换句话说，如果子类重写了父类的方法，当父类的引用指向子类对象时，通过父类的引用调用的是子类方法。如果子类隐藏了父类的方法（成员变量），通过父类的引用调用的仍是父类的方法（成员变量）。</p>
-<p>23   构造器是递归调用的，子类的构造器会调用父类的构造器，直到调用Object类的构造器为止。</p>
-<p>24   构造器没有创建对象，构造器是使用new创建对象时由系统调用的，用来初始化类的实例成员。从顺序上说，先是创建对象，然后再调用构造器的。（构造器并没有产生新的对象）</p>
-<p>25   默认的构造器不为空，该构造器会调用父类的无参构造器，并可能执行实例成员变量的初始化。所以，默认的构造器至少调用了父类的构造器，它做的工作还可能更多，包括实例变量声明初始化与实例初始化块，都是在构造器中执行的。</p>
-<p>26   当==或!=运算符的两个操作数的类型一个是基本数据类型，另一个是包装类引用类型时，将引用类型拆箱转换为基本数据类型，然后比较两个基本数据类型的值是否相等。</p>
-<p>27   在Java中，数组也是类，数组声明的引用变量指向数组类型的对象。所有的数组都继承Object类，并且实现了java.lang.Cloneable与java.io.Serializable接口。数组的成员包括变量length（隐式存在）与从Object类继承的成员。Cloneable与Serializable是两个标记的接口，这两个接口中没有显式声明任何成员。</p>
-<p>28   接口是完全抽象的设计，不能实例化。使A用new方式创建的借口类型，实际上是创建了一个匿名类，该匿名类实现了接口类型。</p>
-<p>29   如果两个接口声明了相同的变量x，则当某接口同时继承这两个接口，或者某类同时实现这两个接口时，通过简单名称访问会产生编译错误。</p>
-<p>30   如果两个接口中声明了相同名称的方法m，并且两个方法没有构成重载，则当某接口能够同时继承这两个接口，或者某类能够同时继承这两个接口时，必须存在一种方法签名，使得该签名同时为两个m方法签名的子签名，并且在方法的返回类型上，必须存在一种类型，使得该类型同时为两个m方法返回类型的可替换类型。</p>
+        <p>sql之left join、right join、inner join的区别</p>
+<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录<br>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录<br>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
+<a id="more"></a>
+<h2 id="举例如下："><a href="#举例如下：" class="headerlink" title="举例如下： "></a>举例如下： </h2><p>表A记录如下：</p>
+<p>aID　　　　　aNum</p>
+<p>1　　　　　a20050111</p>
+<p>2　　　　　a20050112</p>
+<p>3　　　　　a20050113</p>
+<p>4　　　　　a20050114</p>
+<p>5　　　　　a20050115</p>
+<p>表B记录如下:</p>
+<p>bID　　　　　bName</p>
+<p>1　　　　　2006032401</p>
+<p>2　　　　　2006032402</p>
+<p>3　　　　　2006032403</p>
+<p>4　　　　　2006032404</p>
+<p>8　　　　　2006032408</p>
+<hr>
+<p>1.left join<br>sql语句如下:<br>select * from A<br>left join B<br>on A.aID = B.bID</p>
+<p>结果如下:</p>
+<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
+<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
+<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
+<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
+<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
+<p>（所影响的行数为 5 行）<br>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).</p>
+<h2 id="B表记录不足的地方均为NULL"><a href="#B表记录不足的地方均为NULL" class="headerlink" title="B表记录不足的地方均为NULL."></a>B表记录不足的地方均为NULL.</h2><p>2.right join<br>sql语句如下:<br>select * from A<br>right join B<br>on A.aID = B.bID</p>
+<p>结果如下:</p>
+<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
+<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
+<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
+<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
+<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
+<p>（所影响的行数为 5 行）<br>结果说明:</p>
+<h2 id="仔细观察一下-就会发现-和left-join的结果刚好相反-这次是以右表-B-为基础的-A表不足的地方用NULL填充"><a href="#仔细观察一下-就会发现-和left-join的结果刚好相反-这次是以右表-B-为基础的-A表不足的地方用NULL填充" class="headerlink" title="仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充."></a>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</h2><p>3.inner join<br>sql语句如下:<br>select * from A<br>innerjoin B<br>on A.aID = B.bID</p>
+<p>结果如下:</p>
+<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
+<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
+<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
+<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
+<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
+<p>结果说明:</p>
+<h2 id="很明显-这里只显示出了-A-aID-B-bID的记录-这说明inner-join并不以谁为基础-它只显示符合条件的记录"><a href="#很明显-这里只显示出了-A-aID-B-bID的记录-这说明inner-join并不以谁为基础-它只显示符合条件的记录" class="headerlink" title="很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录."></a>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</h2><p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
+<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
+<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
 
       
     </div>
@@ -353,13 +350,13 @@ class Outer {
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/04/07/java-常见误区与细节/">java 常见误区与细节</a></p>
+        <p><span>本文标题:</span><a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/">sql之left join、right join、inner join的区别</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
-        <p><span>发布时间:</span>2017-04-07, 10:23:02</p>
-        <p><span>最后更新:</span>2017-04-07, 10:26:35</p>
+        <p><span>发布时间:</span>2017-05-02, 09:05:34</p>
+        <p><span>最后更新:</span>2017-05-02, 09:13:04</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/04/07/java-常见误区与细节/" title="java 常见误区与细节">http://yoursite.com/2017/04/07/java-常见误区与细节/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/07/java-常见误区与细节/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" title="sql之left join、right join、inner join的区别">http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -371,16 +368,10 @@ class Outer {
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/04/28/汽车竞争云图/">
-                    汽车竞争云图
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/03/31/自动化脚本/">
-                    自动化脚本
+                <a href="/2017/04/28/汽车竞争云图/">
+                    汽车竞争云图
                 </a>
             </div>
         
@@ -392,7 +383,7 @@ class Outer {
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#举例如下："><span class="toc-number">1.</span> <span class="toc-text">举例如下： </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B表记录不足的地方均为NULL"><span class="toc-number">2.</span> <span class="toc-text">B表记录不足的地方均为NULL.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#仔细观察一下-就会发现-和left-join的结果刚好相反-这次是以右表-B-为基础的-A表不足的地方用NULL填充"><span class="toc-number">3.</span> <span class="toc-text">仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#很明显-这里只显示出了-A-aID-B-bID的记录-这说明inner-join并不以谁为基础-它只显示符合条件的记录"><span class="toc-number">4.</span> <span class="toc-text">很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</span></a></li></ol>
         
     </div>
     <style>
@@ -428,7 +419,7 @@ class Outer {
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"java 常见误区与细节　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"sql之left join、right join、inner join的区别　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -448,15 +439,13 @@ class Outer {
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/04/28/汽车竞争云图/" title="上一篇: 汽车竞争云图">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/03/31/自动化脚本/" title="下一篇: 自动化脚本">
+            <a href="/2017/04/28/汽车竞争云图/" title="下一篇: 汽车竞争云图">
                 <i class="fa fa-angle-right"></i>
             </a>
         
