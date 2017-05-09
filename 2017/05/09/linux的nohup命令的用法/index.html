@@ -15,19 +15,16 @@
 
 
 
-<meta name="description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
+<meta name="description" content="linux的nohup命令的用法。在应用Unix/Linux时，我们一般想让某个程序在后台运行，于是我们将常会用 &amp;amp; 在程序结尾来让程序自动运行。比如我们要运行mysql在后台： /usr/local/mysql/bin/mysqld_safe –user=mysql &amp;amp;。可是有很多程序并不想mysqld一样，这样我们就需要nohup命令，怎样使用nohup命令呢？这里讲解nohu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql之left join、right join、inner join的区别">
-<meta property="og:url" content="http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/index.html">
+<meta property="og:title" content="linux的nohup命令的用法">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/linux的nohup命令的用法/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
-<meta property="og:updated_time" content="2017-05-02T02:44:13.726Z">
+<meta property="og:description" content="linux的nohup命令的用法。在应用Unix/Linux时，我们一般想让某个程序在后台运行，于是我们将常会用 &amp;amp; 在程序结尾来让程序自动运行。比如我们要运行mysql在后台： /usr/local/mysql/bin/mysqld_safe –user=mysql &amp;amp;。可是有很多程序并不想mysqld一样，这样我们就需要nohup命令，怎样使用nohup命令呢？这里讲解nohu">
+<meta property="og:updated_time" content="2017-05-09T01:48:17.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql之left join、right join、inner join的区别">
-<meta name="twitter:description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
+<meta name="twitter:title" content="linux的nohup命令的用法">
+<meta name="twitter:description" content="linux的nohup命令的用法。在应用Unix/Linux时，我们一般想让某个程序在后台运行，于是我们将常会用 &amp;amp; 在程序结尾来让程序自动运行。比如我们要运行mysql在后台： /usr/local/mysql/bin/mysqld_safe –user=mysql &amp;amp;。可是有很多程序并不想mysqld一样，这样我们就需要nohup命令，怎样使用nohup命令呢？这里讲解nohu">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +56,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>sql之left join、right join、inner join的区别 | Blog</title>
+<title>linux的nohup命令的用法 | Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -259,11 +256,11 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-sql之left-join、right-join、inner-join的区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-linux的nohup命令的用法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" class="article-date">
-      <time datetime="2017-05-02T01:05:34.000Z" itemprop="datePublished">2017-05-02</time>
+      <a href="/2017/05/09/linux的nohup命令的用法/" class="article-date">
+      <time datetime="2017-05-09T01:47:13.000Z" itemprop="datePublished">2017-05-09</time>
 </a>
 
 
@@ -278,7 +275,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
         
   
     <h1 class="article-title" itemprop="name">
-      sql之left join、right join、inner join的区别
+      linux的nohup命令的用法
     </h1>
   
 
@@ -295,61 +292,34 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>sql之left join、right join、inner join的区别</p>
-<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录<br>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录<br>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
-<a id="more"></a>
-<p>举例如下： </p>
-<p>表A记录如下：</p>
-<p>aID　　　　　aNum</p>
-<p>1　　　　　a20050111</p>
-<p>2　　　　　a20050112</p>
-<p>3　　　　　a20050113</p>
-<p>4　　　　　a20050114</p>
-<p>5　　　　　a20050115</p>
-<hr>
-<p>表B记录如下:</p>
-<p>bID　　　　　bName</p>
-<p>1　　　　　2006032401</p>
-<p>2　　　　　2006032402</p>
-<p>3　　　　　2006032403</p>
-<p>4　　　　　2006032404</p>
-<p>8　　　　　2006032408</p>
-<hr>
-<p>1.left join<br>sql语句如下:<br>select * from A<br>left join B<br>on A.aID = B.bID</p>
-<p>结果如下:</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
-<p>（所影响的行数为 5 行）</p>
-<p>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).</p>
-<p>B表记录不足的地方均为NULL.</p>
-<hr>
-<p>2.right join<br>sql语句如下<br>select * from A<br>right join B<br>on A.aID = B.bID</p>
-<p>结果如下</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
-<p>（所影响的行数为 5 行）<br>结果说明<br>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</p>
-<hr>
-<p>3.inner join<br>sql语句如下<br>select * from A<br>innerjoin B<br>on A.aID = B.bID</p>
-<p>结果如下:</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>结果说明:</p>
-<p>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</p>
-<hr>
-<p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
-<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
-<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
+        <p>linux的nohup命令的用法。<br>在应用Unix/Linux时，我们一般想让某个程序在后台运行，于是我们将常会用 &amp; 在程序结尾来让程序自动运行。比如我们要运行mysql在后台： /usr/local/mysql/bin/mysqld_safe –user=mysql &amp;。可是有很多程序并不想mysqld一样，这样我们就需要nohup命令，怎样使用nohup命令呢？这里讲解nohup命令的一些用法。<br><a id="more"></a><br>nohup /root/start.sh &amp;</p>
+<p>在shell中回车后提示：</p>
+<p>[~]$ appending output to nohup.out</p>
+<p>原程序的的标准输出被自动改向到当前目录下的nohup.out文件，起到了log的作用。</p>
+<p>但是有时候在这一步会有问题，当把终端关闭后，进程会自动被关闭，察看nohup.out可以看到在关闭终端瞬间服务自动关闭。</p>
+<p>咨询红旗Linux工程师后，他也不得其解，在我的终端上执行后，他启动的进程竟然在关闭终端后依然运行。</p>
+<p>在第二遍给我演示时，我才发现我和他操作终端时的一个细节不同：他是在当shell中提示了nohup成功后还需要按终端上键盘任意键退回到shell输入命令窗口，然后通过在shell中输入exit来退出终端；而我是每次在nohup执行成功后直接点关闭程序按钮关闭终端.。所以这时候会断掉该命令所对应的session，导致nohup对应的进程被通知需要一起shutdown。</p>
+<p>这个细节有人和我一样没注意到，所以在这儿记录一下了。</p>
+<p>附：nohup命令参考</p>
+<p>nohup 命令</p>
+<p>用途：不挂断地运行命令。</p>
+<p>语法：nohup Command [ Arg … ] [　&amp; ]</p>
+<p>描述：nohup 命令运行由 Command 参数和任何相关的 Arg 参数指定的命令，忽略所有挂断（SIGHUP）信号。在注销后使用 nohup 命令运行后台中的程序。要运行后台中的 nohup 命令，添加 &amp; （ 表示”and”的符号）到命令的尾部。</p>
+<p>无论是否将 nohup 命令的输出重定向到终端，输出都将附加到当前目录的 nohup.out 文件中。如果当前目录的 nohup.out 文件不可写，输出重定向到 $HOME/nohup.out 文件中。如果没有文件能创建或打开以用于追加，那么 Command 参数指定的命令不可调用。如果标准错误是一个终端，那么把指定的命令写给标准错误的所有输出作为标准输出重定向到相同的文件描述符。</p>
+<p>退出状态：该命令返回下列出口值：</p>
+<p>126 可以查找但不能调用 Command 参数指定的命令。</p>
+<p>127 nohup 命令发生错误或不能查找由 Command 参数指定的命令。</p>
+<p>否则，nohup 命令的退出状态是 Command 参数指定命令的退出状态。</p>
+<p>nohup命令及其输出文件</p>
+<p>nohup命令：如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。nohup就是不挂起的意思( n ohang up)。</p>
+<p>该命令的一般形式为：nohup command &amp;</p>
+<p>使用nohup命令提交作业</p>
+<p>如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：</p>
+<p>nohup command &gt; myout.file 2&gt;&amp;1 &amp;</p>
+<p>在上面的例子中，输出被重定向到myout.file文件中。</p>
+<p>使用 jobs 查看任务。</p>
+<p>使用 fg %n　关闭。</p>
+<p>另外有两个常用的ftp工具ncftpget和ncftpput，可以实现后台的ftp上传和下载，这样就可以利用这些命令在后台上传和下载文件了。</p>
 
       
     </div>
@@ -358,13 +328,13 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/">sql之left join、right join、inner join的区别</a></p>
+        <p><span>本文标题:</span><a href="/2017/05/09/linux的nohup命令的用法/">linux的nohup命令的用法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">zhen xiang</a></p>
-        <p><span>发布时间:</span>2017-05-02, 09:05:34</p>
-        <p><span>最后更新:</span>2017-05-02, 10:44:13</p>
+        <p><span>发布时间:</span>2017-05-09, 09:47:13</p>
+        <p><span>最后更新:</span>2017-05-09, 09:48:17</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" title="sql之left join、right join、inner join的区别">http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/09/linux的nohup命令的用法/" title="linux的nohup命令的用法">http://yoursite.com/2017/05/09/linux的nohup命令的用法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/09/linux的nohup命令的用法/　　作者: zhen xiang" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -376,16 +346,10 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/05/02/为mysql数据库建立索引/">
-                    为mysql数据库建立索引
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/04/28/汽车竞争云图/">
-                    汽车竞争云图
+                <a href="/2017/05/02/为mysql数据库建立索引/">
+                    为mysql数据库建立索引
                 </a>
             </div>
         
@@ -433,7 +397,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"sql之left join、right join、inner join的区别　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"linux的nohup命令的用法　| Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -453,15 +417,13 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/05/02/为mysql数据库建立索引/" title="上一篇: 为mysql数据库建立索引">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/04/28/汽车竞争云图/" title="下一篇: 汽车竞争云图">
+            <a href="/2017/05/02/为mysql数据库建立索引/" title="下一篇: 为mysql数据库建立索引">
                 <i class="fa fa-angle-right"></i>
             </a>
         
