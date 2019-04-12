@@ -109,24 +109,24 @@
 
 
   <meta name="description" content="python 多线程 join start线程的几个状态
-初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+初始(NEW)：新创建了一个线程对象，但还没有调用START()方法。
 
-运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
+运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 多线程 join start">
 <meta property="og:url" content="http://yoursite.com/2019/04/12/python-thread/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="python 多线程 join start线程的几个状态
-初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+初始(NEW)：新创建了一个线程对象，但还没有调用START()方法。
 
-运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
-<meta property="og:updated_time" content="2019-04-12T07:48:24.983Z">
+运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
+<meta property="og:updated_time" content="2019-04-12T07:54:02.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 多线程 join start">
 <meta name="twitter:description" content="python 多线程 join start线程的几个状态
-初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+初始(NEW)：新创建了一个线程对象，但还没有调用START()方法。
 
-运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
+运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
 
 
 
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 15:48:24" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
+              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 15:54:02" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
             
 
             
@@ -373,9 +373,9 @@
 
       
         <h3 id="python-多线程-join-start"><a href="#python-多线程-join-start" class="headerlink" title="python 多线程 join start"></a>python 多线程 join start</h3><h5 id="线程的几个状态"><a href="#线程的几个状态" class="headerlink" title="线程的几个状态"></a>线程的几个状态</h5><ol>
-<li><p>初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。</p>
+<li><p>初始(NEW)：新创建了一个线程对象，但还没有调用START()方法。</p>
 </li>
-<li><p>运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）。</p>
+<li><p>运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（READY）。就绪状态的线程在获得CPU时间片后变为运行中状态（RUNNING）。</p>
 </li>
 <li><p>阻塞(BLOCKED)：表示线程阻塞于锁。</p>
 </li>
@@ -407,29 +407,29 @@ import threading
 import time
 
 def run():
-time.sleep(26)
-print(&apos;当前线程的名字是： &apos;, threading.current_thread().name,time.time())
+    time.sleep(26)
+    print(&apos;当前线程的名字是： &apos;, threading.current_thread().name,time.time())
 
 if __name__ == &apos;__main__&apos;:
-start_time = time.time()
-print(&apos;这是主线程：&apos;, threading.current_thread().name)
-thread_list = []
+    start_time = time.time()
+    print(&apos;这是主线程：&apos;, threading.current_thread().name)
+    thread_list = []
 
-for i in range(5):
-    t = threading.Thread(target=run)
-    # 设置子线程为守护线程。守护线程，守护的为主线程，主线程一死则，守护线程活着没啥用，
-    # 所以主线程挂掉，守护主线程的守护线程也会跟着挂掉
-    t.setDaemon(True)
-    thread_list.append(t)
+    for i in range(5):
+        t = threading.Thread(target=run)
+        # 设置子线程为守护线程。守护线程，守护的为主线程，主线程一死则，守护线程活着没啥用，
+        # 所以主线程挂掉，守护主线程的守护线程也会跟着挂掉
+        t.setDaemon(True)
+        thread_list.append(t)
 
-for t in thread_list:
-    # t.start() 只是把当前线程设置为就绪转态，就绪转态的意思就是当前线程已经准备就绪可以执行，但是不一定会立即执行
-    t.start()
-    # t.join() 就有点强制插队的感觉，意思就是我要插队，我要排到前面去，大家都暂停一下，包括主线程
-    t.join(5)
+    for t in thread_list:
+        # t.start() 只是把当前线程设置为就绪转态，就绪转态的意思就是当前线程已经准备就绪可以执行，但是不一定会立即执行
+        t.start()
+        # t.join() 就有点强制插队的感觉，意思就是我要插队，我要排到前面去，大家都暂停一下，包括主线程
+        t.join(5)
 
-print(&apos;主线程结束！&apos; , threading.current_thread().name)
-print(&apos;一共用时：&apos;, time.time()-start_time)
+    print(&apos;主线程结束！&apos; , threading.current_thread().name)
+    print(&apos;一共用时：&apos;, time.time()-start_time)
 </code></pre>
       
     </div>
