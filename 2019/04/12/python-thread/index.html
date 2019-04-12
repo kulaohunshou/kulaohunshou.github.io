@@ -108,22 +108,32 @@
 
 
 
-  <meta name="description" content="苏祯祥">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="python 多线程 join start线程的几个状态
+初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+
+运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 多线程 join start">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/python-thread/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="苏祯祥">
+<meta property="og:description" content="python 多线程 join start线程的几个状态
+初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+
+运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
+<meta property="og:updated_time" content="2019-04-12T07:48:24.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
-<meta name="twitter:description" content="苏祯祥">
+<meta name="twitter:title" content="python 多线程 join start">
+<meta name="twitter:description" content="python 多线程 join start线程的几个状态
+初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+
+运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/12/python-thread/"/>
 
 
 
@@ -133,7 +143,7 @@
   };
 </script>
 
-  <title>Blog</title>
+  <title>python 多线程 join start | Blog</title>
   
 
 
@@ -180,8 +190,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,9 +275,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -283,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/bulid-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/python-thread/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhen xiang">
@@ -300,11 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/21/bulid-blog/" itemprop="url">
-                  为什么要建立自己的博客
-                </a>
+          <h1 class="post-title" itemprop="name headline">python 多线程 join start
               
             
           </h1>
@@ -329,7 +334,7 @@
                 
               
 
-              <time title="Post created: 2017-03-21 14:32:10 / Updated at: 19:21:35" itemprop="dateCreated datePublished" datetime="2017-03-21T14:32:10+08:00">2017-03-21</time>
+              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 15:48:24" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
             
 
             
@@ -367,16 +372,65 @@
       
 
       
-        
-          <p>想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/bulid-blog/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="python-多线程-join-start"><a href="#python-多线程-join-start" class="headerlink" title="python 多线程 join start"></a>python 多线程 join start</h3><h5 id="线程的几个状态"><a href="#线程的几个状态" class="headerlink" title="线程的几个状态"></a>线程的几个状态</h5><ol>
+<li><p>初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。</p>
+</li>
+<li><p>运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）。</p>
+</li>
+<li><p>阻塞(BLOCKED)：表示线程阻塞于锁。</p>
+</li>
+<li><p>等待(WAITING)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。</p>
+</li>
+<li><p>超时等待(TIMED_WAITING)：该状态不同于WAITING，它可以在指定的时间后自行返回。</p>
+</li>
+<li><p>终止(TERMINATED)：表示该线程已经执行完毕。</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>python 默认参数创建线程后，不管主线程是否执行完毕，都会等待子线程执行完毕才一起退出，有无join结果一样</p>
+</li>
+<li><p>如果创建线程，并且设置了daemon为true，即thread.setDaemon(True), 则主线程执行完毕后自动退出，不会等待子线程的执行结果。而且随着主线程退出，子线程也消亡。</p>
+</li>
+<li><p>join方法的作用是阻塞，等待子线程结束，join方法有一个参数是timeout，即如果主线程等待timeout，子线程还没有结束，则主线程强制结束子线程。</p>
+</li>
+<li><p>如果线程daemon属性为False， 则join里的timeout参数无效。主线程会一直等待子线程结束。</p>
+</li>
+<li><p>如果线程daemon属性为True， 则join里的timeout参数是有效的， 主线程会等待timeout时间后，结束子线程。此处有一个坑，即如果同时有N个子线程join(timeout），那么实际上主线程会等待的超时时间最长为 N ＊ timeout， 因为每个子线程的超时开始时刻是上一个子线程超时结束的时刻。</p>
+</li>
+</ol>
+<hr>
+<a id="more"></a>
+<pre><code>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import threading
+import time
+
+def run():
+time.sleep(26)
+print(&apos;当前线程的名字是： &apos;, threading.current_thread().name,time.time())
+
+if __name__ == &apos;__main__&apos;:
+start_time = time.time()
+print(&apos;这是主线程：&apos;, threading.current_thread().name)
+thread_list = []
+
+for i in range(5):
+    t = threading.Thread(target=run)
+    # 设置子线程为守护线程。守护线程，守护的为主线程，主线程一死则，守护线程活着没啥用，
+    # 所以主线程挂掉，守护主线程的守护线程也会跟着挂掉
+    t.setDaemon(True)
+    thread_list.append(t)
+
+for t in thread_list:
+    # t.start() 只是把当前线程设置为就绪转态，就绪转态的意思就是当前线程已经准备就绪可以执行，但是不一定会立即执行
+    t.start()
+    # t.join() 就有点强制插队的感觉，意思就是我要插队，我要排到前面去，大家都暂停一下，包括主线程
+    t.join(5)
+
+print(&apos;主线程结束！&apos; , threading.current_thread().name)
+print(&apos;一共用时：&apos;, time.time()-start_time)
+</code></pre>
       
     </div>
 
@@ -396,12 +450,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/linux的nohup命令的用法/" rel="next" title="linux的nohup命令的用法">
+                <i class="fa fa-chevron-left"></i> linux的nohup命令的用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -411,18 +481,15 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -443,8 +510,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -489,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python-多线程-join-start"><span class="nav-number">1.</span> <span class="nav-text">python 多线程 join start</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的几个状态"><span class="nav-number">1.0.1.</span> <span class="nav-text">线程的几个状态</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -619,6 +711,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
 
   
 

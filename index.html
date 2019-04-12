@@ -283,6 +283,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/python-thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhen xiang">
+      <meta itemprop="description" content="苏祯祥">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/12/python-thread/" itemprop="url">
+                  python 多线程 join start
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 15:48:24" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="python-多线程-join-start"><a href="#python-多线程-join-start" class="headerlink" title="python 多线程 join start"></a>python 多线程 join start</h3><h5 id="线程的几个状态"><a href="#线程的几个状态" class="headerlink" title="线程的几个状态"></a>线程的几个状态</h5><ol>
+<li><p>初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。</p>
+</li>
+<li><p>运行(RUNNABLE)：线程中将就绪（ready）和运行（running）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）。</p>
+</li>
+<li><p>阻塞(BLOCKED)：表示线程阻塞于锁。</p>
+</li>
+<li><p>等待(WAITING)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。</p>
+</li>
+<li><p>超时等待(TIMED_WAITING)：该状态不同于WAITING，它可以在指定的时间后自行返回。</p>
+</li>
+<li><p>终止(TERMINATED)：表示该线程已经执行完毕。</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>python 默认参数创建线程后，不管主线程是否执行完毕，都会等待子线程执行完毕才一起退出，有无join结果一样</p>
+</li>
+<li><p>如果创建线程，并且设置了daemon为true，即thread.setDaemon(True), 则主线程执行完毕后自动退出，不会等待子线程的执行结果。而且随着主线程退出，子线程也消亡。</p>
+</li>
+<li><p>join方法的作用是阻塞，等待子线程结束，join方法有一个参数是timeout，即如果主线程等待timeout，子线程还没有结束，则主线程强制结束子线程。</p>
+</li>
+<li><p>如果线程daemon属性为False， 则join里的timeout参数无效。主线程会一直等待子线程结束。</p>
+</li>
+<li><p>如果线程daemon属性为True， 则join里的timeout参数是有效的， 主线程会等待timeout时间后，结束子线程。此处有一个坑，即如果同时有N个子线程join(timeout），那么实际上主线程会等待的超时时间最长为 N ＊ timeout， 因为每个子线程的超时开始时刻是上一个子线程超时结束的时刻。</p>
+</li>
+</ol>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/12/python-thread/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/linux的nohup命令的用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1147,162 +1318,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/boge-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhen xiang">
-      <meta itemprop="description" content="苏祯祥">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/boge-1/" itemprop="url">
-                  17年3月31号腾达大厦 窗外风景
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2017-03-27 09:14:10" itemprop="dateCreated datePublished" datetime="2017-03-27T09:14:10+08:00">2017-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2017-03-31 18:29:09" itemprop="dateModified" datetime="2017-03-31T18:29:09+08:00">2017-03-31</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>你站在桥上看风景 看风景的人在楼上看你<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/boge-1/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/MR join/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1615,7 +1630,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/bulid-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/boge-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhen xiang">
@@ -1634,8 +1649,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/21/bulid-blog/" itemprop="url">
-                  为什么要建立自己的博客
+                <a class="post-title-link" href="/2017/03/27/boge-1/" itemprop="url">
+                  17年3月31号腾达大厦 窗外风景
                 </a>
               
             
@@ -1661,12 +1676,24 @@
                 
               
 
-              <time title="Post created: 2017-03-21 14:32:10 / Updated at: 19:21:35" itemprop="dateCreated datePublished" datetime="2017-03-21T14:32:10+08:00">2017-03-21</time>
+              <time title="Post created: 2017-03-27 09:14:10" itemprop="dateCreated datePublished" datetime="2017-03-27T09:14:10+08:00">2017-03-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2017-03-31 18:29:09" itemprop="dateModified" datetime="2017-03-31T18:29:09+08:00">2017-03-31</time>
               
             
           </span>
@@ -1700,10 +1727,10 @@
 
       
         
-          <p>想建立自己的博客也有一段时间了，但是一直没有动手，第一：可能觉得步骤复杂；第二：觉得有有道云笔记，或者印象笔记之类的软件也挺好。<br>
+          <p>你站在桥上看风景 看风景的人在楼上看你<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/bulid-blog/#more" rel="contents">
+            <a class="btn" href="/2017/03/27/boge-1/#more" rel="contents">
               Weiterlesen &raquo;
             </a>
           </div>
@@ -1747,6 +1774,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1787,7 +1818,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
