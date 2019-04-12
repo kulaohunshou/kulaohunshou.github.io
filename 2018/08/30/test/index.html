@@ -108,26 +108,23 @@
 
 
 
-  <meta name="description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
+  <meta name="description" content="long time no write，just make a test。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql之left join、right join、inner join的区别">
-<meta property="og:url" content="http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2018/08/30/test/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
-<meta property="og:updated_time" content="2017-05-02T02:44:13.726Z">
+<meta property="og:description" content="long time no write，just make a test。">
+<meta property="og:updated_time" content="2018-09-06T07:12:01.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql之left join、right join、inner join的区别">
-<meta name="twitter:description" content="sql之left join、right join、inner join的区别
-left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录inner join(等值连接) 只返回两个表中联结字段相等的行">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="long time no write，just make a test。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/30/test/"/>
 
 
 
@@ -137,7 +134,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
   };
 </script>
 
-  <title>sql之left join、right join、inner join的区别 | Blog</title>
+  <title>test | Blog</title>
   
 
 
@@ -286,7 +283,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/02/sql之left-join、right-join、inner-join的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhen xiang">
@@ -303,7 +300,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
 
         
         
-          <h1 class="post-title" itemprop="name headline">sql之left join、right join、inner join的区别
+          <h1 class="post-title" itemprop="name headline">test
               
             
           </h1>
@@ -328,12 +325,24 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
                 
               
 
-              <time title="Post created: 2017-05-02 09:05:34 / Updated at: 10:44:13" itemprop="dateCreated datePublished" datetime="2017-05-02T09:05:34+08:00">2017-05-02</time>
+              <time title="Post created: 2018-08-30 15:21:22" itemprop="dateCreated datePublished" datetime="2018-08-30T15:21:22+08:00">2018-08-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-09-06 15:12:01" itemprop="dateModified" datetime="2018-09-06T15:12:01+08:00">2018-09-06</time>
               
             
           </span>
@@ -366,61 +375,7 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
       
 
       
-        <p>sql之left join、right join、inner join的区别</p>
-<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录<br>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录<br>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
-<a id="more"></a>
-<p>举例如下： </p>
-<p>表A记录如下：</p>
-<p>aID　　　　　aNum</p>
-<p>1　　　　　a20050111</p>
-<p>2　　　　　a20050112</p>
-<p>3　　　　　a20050113</p>
-<p>4　　　　　a20050114</p>
-<p>5　　　　　a20050115</p>
-<hr>
-<p>表B记录如下:</p>
-<p>bID　　　　　bName</p>
-<p>1　　　　　2006032401</p>
-<p>2　　　　　2006032402</p>
-<p>3　　　　　2006032403</p>
-<p>4　　　　　2006032404</p>
-<p>8　　　　　2006032408</p>
-<hr>
-<p>1.left join<br>sql语句如下:<br>select * from A<br>left join B<br>on A.aID = B.bID</p>
-<p>结果如下:</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>5　　　　　a20050115　　　　NULL　　　　　NULL</p>
-<p>（所影响的行数为 5 行）</p>
-<p>结果说明:<br>left join是以A表的记录为基础的,A可以看成左表,B可以看成右表,left join是以左表为准的.<br>换句话说,左表(A)的记录将会全部表示出来,而右表(B)只会显示符合搜索条件的记录(例子中为: A.aID = B.bID).</p>
-<p>B表记录不足的地方均为NULL.</p>
-<hr>
-<p>2.right join<br>sql语句如下<br>select * from A<br>right join B<br>on A.aID = B.bID</p>
-<p>结果如下</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>NULL　　　　　NULL　　　　　8　　　　　2006032408</p>
-<p>（所影响的行数为 5 行）<br>结果说明<br>仔细观察一下,就会发现,和left join的结果刚好相反,这次是以右表(B)为基础的,A表不足的地方用NULL填充.</p>
-<hr>
-<p>3.inner join<br>sql语句如下<br>select * from A<br>innerjoin B<br>on A.aID = B.bID</p>
-<p>结果如下:</p>
-<p>aID　　　　　aNum　　　　　bID　　　　　bName</p>
-<p>1　　　　　a20050111　　　　1　　　　　2006032401</p>
-<p>2　　　　　a20050112　　　　2　　　　　2006032402</p>
-<p>3　　　　　a20050113　　　　3　　　　　2006032403</p>
-<p>4　　　　　a20050114　　　　4　　　　　2006032404</p>
-<p>结果说明:</p>
-<p>很明显,这里只显示出了 A.aID = B.bID的记录.这说明inner join并不以谁为基础,它只显示符合条件的记录.</p>
-<hr>
-<p>注:<br>LEFT JOIN操作用于在任何的 FROM 子句中，组合来源表的记录。使用 LEFT JOIN 运算来创建一个左边外部联接。左边外部联接将包含了从第一个（左边）开始的两个表中的全部记录，即使在第二个（右边）表中并没有相符值的记录。</p>
-<p>语法：FROM table1 LEFT JOIN table2 ON table1.field1 compopr table2.field2</p>
-<p>说明：table1, table2参数用于指定要将记录组合的表的名称。<br>field1, field2参数指定被联接的字段的名称。且这些字段必须有相同的数据类型及包含相同类型的数据，但它们不需要有相同的名称。<br>compopr参数指定关系比较运算符：”=”， “&lt;”， “&gt;”， “&lt;=”， “&gt;=” 或 “&lt;&gt;”。<br>如果在INNER JOIN操作中要联接包含Memo 数据类型或 OLE Object 数据类型数据的字段，将会发生错误. </p>
+        <p>long time no write，just make a test。</p>
 
       
     </div>
@@ -448,8 +403,8 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/28/汽车竞争云图/" rel="next" title="汽车竞争云图">
-                <i class="fa fa-chevron-left"></i> 汽车竞争云图
+              <a href="/2017/05/09/linux的nohup命令的用法/" rel="next" title="linux的nohup命令的用法">
+                <i class="fa fa-chevron-left"></i> linux的nohup命令的用法
               </a>
             
           </div>
@@ -458,8 +413,8 @@ left join(左联接) 返回包括左表中的所有记录和右表中联结字�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/02/为mysql数据库建立索引/" rel="prev" title="为mysql数据库建立索引">
-                为mysql数据库建立索引 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/12/longtime-test/" rel="prev" title="longtime-test">
+                longtime-test <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
