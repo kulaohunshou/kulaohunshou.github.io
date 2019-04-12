@@ -120,7 +120,7 @@
 初始(NEW)：新创建了一个线程对象，但还没有调用START()方法。
 
 运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪">
-<meta property="og:updated_time" content="2019-04-12T07:57:40.520Z">
+<meta property="og:updated_time" content="2019-04-12T08:08:16.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 多线程 join start">
 <meta name="twitter:description" content="python 多线程 join start线程的几个状态
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 15:57:40" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
+              <time title="Post created: 2019-04-12 15:27:40 / Updated at: 16:08:16" itemprop="dateCreated datePublished" datetime="2019-04-12T15:27:40+08:00">2019-04-12</time>
             
 
             
@@ -378,17 +378,16 @@
 <li><p>运行(RUNNABLE)：线程中将就绪（READY）和运行（RUNNING）两种状态笼统的称为“运行”。 线程对象创建后，其他线程(比如MAIN线程）调用了该对象的START()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（READY）。就绪状态的线程在获得CPU时间片后变为运行中状态（RUNNING）。</p>
 </li>
 <li><p>阻塞(BLOCKED)：表示线程阻塞于锁。</p>
-</li>
+<a id="more"></a></li>
 <li><p>等待(WAITING)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。</p>
 </li>
 <li><p>超时等待(TIMED_WAITING)：该状态不同于WAITING，它可以在指定的时间后自行返回。</p>
 </li>
 <li><p>终止(TERMINATED)：表示该线程已经执行完毕。</p>
-<a id="more"></a>
 </li>
 </ol>
 <hr>
-<ol>
+<h5 id="python多线程的真相"><a href="#python多线程的真相" class="headerlink" title="python多线程的真相"></a>python多线程的真相</h5><ol>
 <li><p>python 默认参数创建线程后，不管主线程是否执行完毕，都会等待子线程执行完毕才一起退出，有无join结果一样</p>
 </li>
 <li><p>如果创建线程，并且设置了daemon为true，即thread.setDaemon(True), 则主线程执行完毕后自动退出，不会等待子线程的执行结果。而且随着主线程退出，子线程也消亡。</p>
@@ -401,7 +400,7 @@
 </li>
 </ol>
 <hr>
-<pre><code>#!/usr/bin/python
+<h5 id="直接上代码"><a href="#直接上代码" class="headerlink" title="直接上代码"></a>直接上代码</h5><pre><code>#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import threading
 import time
@@ -575,7 +574,7 @@ if __name__ == &apos;__main__&apos;:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python-多线程-join-start"><span class="nav-number">1.</span> <span class="nav-text">python 多线程 join start</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的几个状态"><span class="nav-number">1.0.1.</span> <span class="nav-text">线程的几个状态</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python-多线程-join-start"><span class="nav-number">1.</span> <span class="nav-text">python 多线程 join start</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的几个状态"><span class="nav-number">1.0.1.</span> <span class="nav-text">线程的几个状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#python多线程的真相"><span class="nav-number">1.0.2.</span> <span class="nav-text">python多线程的真相</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接上代码"><span class="nav-number">1.0.3.</span> <span class="nav-text">直接上代码</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
