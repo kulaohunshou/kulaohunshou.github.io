@@ -108,16 +108,25 @@
 
 
 
-  <meta name="description" content="苏祯祥">
+  <meta name="description" content="一、公钥加密假设一下，我找了两个数字，一个是1，一个是2。我喜欢2这个数字，就保留起来，不告诉你们(私钥），然后我告诉大家，1是我的公钥。
+我有一个文件，不能让别人看，我就用1加密了。别人找到了这个文件，但是他不知道2就是解密的私钥啊，所以他解不开，只有我可以用数字2，就是我的私钥，来解密。这样我就可以保护数据了。
+我的好朋友x用我的公钥1加密了字符a，加密后成了b，放在网上。别人偷到了这个文件，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="公钥私钥数字签名">
 <meta property="og:url" content="http://yoursite.com/2019/04/15/公钥私钥数字签名/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="苏祯祥">
-<meta property="og:updated_time" content="2019-04-15T02:01:17.286Z">
+<meta property="og:description" content="一、公钥加密假设一下，我找了两个数字，一个是1，一个是2。我喜欢2这个数字，就保留起来，不告诉你们(私钥），然后我告诉大家，1是我的公钥。
+我有一个文件，不能让别人看，我就用1加密了。别人找到了这个文件，但是他不知道2就是解密的私钥啊，所以他解不开，只有我可以用数字2，就是我的私钥，来解密。这样我就可以保护数据了。
+我的好朋友x用我的公钥1加密了字符a，加密后成了b，放在网上。别人偷到了这个文件，">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201202/10/0_13288659560bJg.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201202/10/0_1328866805u7U7.gif">
+<meta property="og:updated_time" content="2019-04-15T02:09:12.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公钥私钥数字签名">
-<meta name="twitter:description" content="苏祯祥">
+<meta name="twitter:description" content="一、公钥加密假设一下，我找了两个数字，一个是1，一个是2。我喜欢2这个数字，就保留起来，不告诉你们(私钥），然后我告诉大家，1是我的公钥。
+我有一个文件，不能让别人看，我就用1加密了。别人找到了这个文件，但是他不知道2就是解密的私钥啊，所以他解不开，只有我可以用数字2，就是我的私钥，来解密。这样我就可以保护数据了。
+我的好朋友x用我的公钥1加密了字符a，加密后成了b，放在网上。别人偷到了这个文件，">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201202/10/0_13288659560bJg.gif">
 
 
 
@@ -224,7 +233,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
@@ -232,7 +241,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
 
       
@@ -318,16 +327,20 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2019-04-15 10:01:17" itemprop="dateCreated datePublished" datetime="2019-04-15T10:01:17+08:00">2019-04-15</time>
+              <time title="Post created: 2019-04-15 10:01:17 / Updated at: 10:09:12" itemprop="dateCreated datePublished" datetime="2019-04-15T10:01:17+08:00">2019-04-15</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -359,7 +372,22 @@
       
 
       
-        
+        <h2 id="一、公钥加密"><a href="#一、公钥加密" class="headerlink" title="一、公钥加密"></a>一、公钥加密</h2><p>假设一下，我找了两个数字，一个是1，一个是2。我喜欢2这个数字，就保留起来，不告诉你们(私钥），然后我告诉大家，1是我的公钥。</p>
+<p>我有一个文件，不能让别人看，我就用1加密了。别人找到了这个文件，但是他不知道2就是解密的私钥啊，所以他解不开，只有我可以用<br>数字2，就是我的私钥，来解密。这样我就可以保护数据了。</p>
+<p>我的好朋友x用我的公钥1加密了字符a，加密后成了b，放在网上。别人偷到了这个文件，但是别人解不开，因为别人不知道2就是我的私钥，<br>只有我才能解密，解密后就得到a。这样，我们就可以传送加密的数据了。<br><a id="more"></a></p>
+<h2 id="二、私钥签名"><a href="#二、私钥签名" class="headerlink" title="二、私钥签名"></a>二、私钥签名</h2><p>如果我用私钥加密一段数据（当然只有我可以用私钥加密，因为只有我知道2是我的私钥），结果所有的人都看到我的内容了，因为他们都知<br>道我的公钥是1，那么这种加密有什么用处呢？</p>
+<p>但是我的好朋友x说有人冒充我给他发信。怎么办呢？我把我要发的信，内容是c，用我的私钥2，加密，加密后的内容是d，发给x，再告诉他<br>解密看是不是c。他用我的公钥1解密，发现果然是c。<br>这个时候，他会想到，能够用我的公钥解密的数据，必然是用我的私钥加的密。只有我知道我得私钥，因此他就可以确认确实是我发的东西。<br>这样我们就能确认发送方身份了。这个过程叫做数字签名。当然具体的过程要稍微复杂一些。用私钥来加密数据，用途就是数字签名。</p>
+<p><em>*</em>总结：公钥和私钥是成对的，它们互相解密。</p>
+<p>公钥加密，私钥解密。</p>
+<p>私钥数字签名，公钥验证。<em>*</em></p>
+<p>举例</p>
+<p>比如有两个用户Alice和Bob，Alice想把一段明文通过双钥加密的技术发送给Bob，Bob有一对公钥和私钥，那么加密解密的过程如下：</p>
+<p>Bob将他的公开密钥传送给Alice。<br>Alice用Bob的公开密钥加密她的消息，然后传送给Bob。<br>Bob用他的私人密钥解密Alice的消息。<br>　　上面的过程可以用下图表示，Alice使用Bob的公钥进行加密，Bob用自己的私钥进行解密。</p>
+<p><img src="http://hi.csdn.net/attachment/201202/10/0_13288659560bJg.gif" alt=""></p>
+<p>例子和图出自《网络安全基础 应用与标准第二版》</p>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><p>RSA公钥加密算法是1977年由Ron Rivest、Adi Shamirh和LenAdleman在（美国麻省理工学院）开发的。RSA取名来自开发他们三者的名字。RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的所有密码攻击，已被ISO推荐为公钥数据加密标准。RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。</p>
+<p><img src="http://hi.csdn.net/attachment/201202/10/0_1328866805u7U7.gif" alt=""></p>
+
       
     </div>
 
@@ -439,8 +467,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -456,7 +493,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -486,6 +523,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、公钥加密"><span class="nav-number">1.</span> <span class="nav-text">一、公钥加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、私钥签名"><span class="nav-number">2.</span> <span class="nav-text">二、私钥签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法"><span class="nav-number">3.</span> <span class="nav-text">RSA算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -513,7 +566,7 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.2.2</div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.2.2</div>
 
 
 
