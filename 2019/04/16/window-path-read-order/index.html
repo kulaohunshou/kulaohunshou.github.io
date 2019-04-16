@@ -108,23 +108,29 @@
 
 
 
-  <meta name="description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
+  <meta name="description" content="经测试：直接上结论：第一：windows系统中，在查找path变量时，先查找系统环境变量，再查找用户环境变量
+第二：windows 环境变量的查找顺序是按照文件的录入的顺序从前向后找的，最前面一条的优先级最高，如果找到命令就不会再向后找
+ps1：因此新增环境变量的时候，最好将新添加的放在最前面 以获得最高优先级ps2:另外：环境变量修改后需要关闭命令后后再打开才生效">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为mysql数据库建立索引">
-<meta property="og:url" content="http://yoursite.com/2017/05/02/为mysql数据库建立索引/index.html">
+<meta property="og:title" content="windows 下环境变量的读取顺序">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/window-path-read-order/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
-<meta property="og:updated_time" content="2017-05-02T02:44:30.085Z">
+<meta property="og:description" content="经测试：直接上结论：第一：windows系统中，在查找path变量时，先查找系统环境变量，再查找用户环境变量
+第二：windows 环境变量的查找顺序是按照文件的录入的顺序从前向后找的，最前面一条的优先级最高，如果找到命令就不会再向后找
+ps1：因此新增环境变量的时候，最好将新添加的放在最前面 以获得最高优先级ps2:另外：环境变量修改后需要关闭命令后后再打开才生效">
+<meta property="og:updated_time" content="2019-04-16T09:28:01.594Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为mysql数据库建立索引">
-<meta name="twitter:description" content="为mysql数据库建立索引前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。">
+<meta name="twitter:title" content="windows 下环境变量的读取顺序">
+<meta name="twitter:description" content="经测试：直接上结论：第一：windows系统中，在查找path变量时，先查找系统环境变量，再查找用户环境变量
+第二：windows 环境变量的查找顺序是按照文件的录入的顺序从前向后找的，最前面一条的优先级最高，如果找到命令就不会再向后找
+ps1：因此新增环境变量的时候，最好将新添加的放在最前面 以获得最高优先级ps2:另外：环境变量修改后需要关闭命令后后再打开才生效">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/02/为mysql数据库建立索引/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/16/window-path-read-order/"/>
 
 
 
@@ -134,7 +140,7 @@
   };
 </script>
 
-  <title>为mysql数据库建立索引 | Blog</title>
+  <title>windows 下环境变量的读取顺序 | Blog</title>
   
 
 
@@ -283,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/02/为mysql数据库建立索引/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/window-path-read-order/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhen xiang">
@@ -300,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">为mysql数据库建立索引
+          <h1 class="post-title" itemprop="name headline">windows 下环境变量的读取顺序
               
             
           </h1>
@@ -325,7 +331,7 @@
                 
               
 
-              <time title="Post created: 2017-05-02 10:43:44 / Updated at: 10:44:30" itemprop="dateCreated datePublished" datetime="2017-05-02T10:43:44+08:00">2017-05-02</time>
+              <time title="Post created: 2019-04-16 17:24:15 / Updated at: 17:28:01" itemprop="dateCreated datePublished" datetime="2019-04-16T17:24:15+08:00">2019-04-16</time>
             
 
             
@@ -363,49 +369,9 @@
       
 
       
-        <p>为mysql数据库建立索引<br>前些时候，一位颇高级的程序员居然问我什么叫做索引，令我感到十分的惊奇，我想这绝不会是沧海一粟，因为有成千上万的开发者（可能大部分是使用MySQL的）都没有受过有关数据库的正规培训，尽管他们都为客户做过一些开发，但却对如何为数据库建立适当的索引所知较少，因此我起了写一篇相关文章的念头。<br><a id="more"></a><br>  最普通的情况，是为出现在where子句的字段建一个索引。为方便讲述，我们先建立一个如下的表。</p>
-<p>Code代码如下:<br>CREATE TABLE mytable (<br>　id serial primary key,<br>　category_id int not null default 0,<br>　user_id int not null default 0,<br>　adddate int not null default 0<br>);</p>
-<p>  很简单吧，不过对于要说明这个问题，已经足够了。如果你在查询时常用类似以下的语句：</p>
-<p>SELECT * FROM mytable WHERE category_id=1; </p>
-<p>  最直接的应对之道，是为category_id建立一个简单的索引：</p>
-<p>CREATE INDEX mytable_categoryid<br>　ON mytable (category_id);</p>
-<p>  OK，搞定？先别高兴，如果你有不止一个选择条件呢？例如：</p>
-<p>SELECT * FROM mytable WHERE category_id=1 AND user_id=2;</p>
-<p>  你的第一反应可能是，再给user_id建立一个索引。不好，这不是一个最佳的方法。你可以建立多重的索引。</p>
-<p>CREATE INDEX mytable_categoryid_userid ON mytable (category_id,user_id);</p>
-<p>  注意到我在命名时的习惯了吗？我使用”表名<em>字段1名</em>字段2名”的方式。你很快就会知道我为什么这样做了。</p>
-<p>  现在你已经为适当的字段建立了索引，不过，还是有点不放心吧，你可能会问，数据库会真正用到这些索引吗？测试一下就OK，对于大多数的数据库来说，这是很容易的，只要使用EXPLAIN命令：</p>
-<p>EXPLAIN</p>
-<p>　SELECT * FROM mytable<br>　　WHERE category_id=1 AND user_id=2;</p>
-<p>This is what Postgres 7.1 returns (exactly as I expected) </p>
-<p>　NOTICE: QUERY PLAN:</p>
-<p>Index Scan using mytable_categoryid_userid on<br>  mytable (cost=0.00..2.02 rows=1 width=16)</p>
-<p>EXPLAIN</p>
-<p>  以上是postgres的数据，可以看到该数据库在查询的时候使用了一个索引（一个好开始），而且它使用的是我创建的第二个索引。看到我上面命名的好处了吧，你马上知道它使用适当的索引了。</p>
-<p>  接着，来个稍微复杂一点的，如果有个ORDER BY字句呢？不管你信不信，大多数的数据库在使用order by的时候，都将会从索引中受益。</p>
-<p>SELECT * FROM mytable<br>  WHERE category_id=1 AND user_id=2<br>    ORDER BY adddate DESC;</p>
-<p>  有点迷惑了吧？很简单，就象为where字句中的字段建立一个索引一样，也为ORDER BY的字句中的字段建立一个索引：</p>
-<p>CREATE INDEX mytable_categoryid_userid_adddate<br>  ON mytable (category_id,user_id,adddate);</p>
-<p>  注意: “mytable_categoryid_userid_adddate” 将会被截短为</p>
-<p>“mytable_categoryid_userid_addda”</p>
-<p>CREATE</p>
-<p>  EXPLAIN SELECT * FROM mytable<br>　　WHERE category_id=1 AND user_id=2<br>　　　ORDER BY adddate DESC;</p>
-<p>　NOTICE: QUERY PLAN:</p>
-<p>　Sort (cost=2.03..2.03 rows=1 width=16)<br>　　-&gt; Index Scan using mytable_categoryid_userid_addda<br>　　　　on mytable (cost=0.00..2.02 rows=1 width=16)</p>
-<p>EXPLAIN</p>
-<p>  看看EXPLAIN的输出，好象有点恐怖啊，数据库多做了一个我们没有要求的排序，这下知道性能如何受损了吧，看来我们对于数据库的自身运作是有点过于乐观了，那么，给数据库多一点提示吧。</p>
-<p>  为了跳过排序这一步，我们并不需要其它另外的索引，只要将查询语句稍微改一下。这里用的是postgres，我们将给该数据库一个额外的提示–在ORDER BY语句中，加入where语句中的字段。这只是一个技术上的处理，并不是必须的，因为实际上在另外两个字段上，并不会有任何的排序操作，不过如果加入，postgres将会知道哪些是它应该做的。</p>
-<p>EXPLAIN SELECT * FROM mytable<br>  WHERE category_id=1 AND user_id=2<br>　　ORDER BY category_id DESC,user_id DESC,adddate DESC;</p>
-<p>NOTICE: QUERY PLAN:</p>
-<p>Index Scan Backward using<br>　mytable_categoryid_userid_addda on mytable<br>　  (cost=0.00..2.02 rows=1 width=16)</p>
-<p>EXPLAIN</p>
-<p>  现在使用我们料想的索引了，而且它还挺聪明，知道可以从索引后面开始读，从而避免了任何的排序。</p>
-<p>  以上说得细了一点，不过如果你的数据库非常巨大，并且每日的页面请求达上百万算，我想你会获益良多的。不过，如果你要做更为复杂的查询呢，例如将多张表结合起来查询，特别是where限制字句中的字段是来自不止一个表格时，应该怎样处理呢？我通常都尽量避免这种做法，因为这样数据库要将各个表中的东西都结合起来，然后再排除那些不合适的行，搞不好开销会很大。</p>
-<p>  如果不能避免，你应该查看每张要结合起来的表，并且使用以上的策略来建立索引，然后再用EXPLAIN命令验证一下是否使用了你料想中的索引。如果是的话，就OK。不是的话，你可能要建立临时的表来将他们结合在一起，并且使用适当的索引。</p>
-<p>  要注意的是，建立太多的索引将会影响更新和插入的速度，因为它需要同样更新每个索引文件。对于一个经常需要更新和插入的表格，就没有必要为一个很少使用的where字句单独建立索引了，对于比较小的表，排序的开销不会很大，也没有必要建立另外的索引。</p>
-<p>  以上介绍的只是一些十分基本的东西，其实里面的学问也不少，单凭EXPLAIN我们是不能判定该方法是否就是最优化的，每个数据库都有自己的一些优化器，虽然可能还不太完善，但是它们都会在查询时对比过哪种方式较快，在某些情况下，建立索引的话也未必会快，例如索引放在一个不连续的存储空间时，这会增加读磁盘的负担，因此，哪个是最优，应该通过实际的使用环境来检验。</p>
-<p>  在刚开始的时候，如果表不大，没有必要作索引，我的意见是在需要的时候才作索引，也可用一些命令来优化表，例如MySQL可用”OPTIMIZE TABLE”。</p>
-<p>  综上所述，在如何为数据库建立恰当的索引方面，你应该有一些基本的概念了。</p>
+        <h3 id="经测试："><a href="#经测试：" class="headerlink" title="经测试："></a>经测试：</h3><h3 id="直接上结论："><a href="#直接上结论：" class="headerlink" title="直接上结论："></a>直接上结论：</h3><p>第一：windows系统中，在查找path变量时，先查找系统环境变量，再查找用户环境变量</p>
+<p>第二：windows 环境变量的查找顺序是按照文件的录入的顺序从前向后找的，最前面一条的优先级最高，如果找到命令就不会再向后找</p>
+<p>ps1：因此新增环境变量的时候，最好将新添加的放在最前面 以获得最高优先级<br>ps2:另外：环境变量修改后需要关闭命令后后再打开才生效</p>
 
       
     </div>
@@ -424,6 +390,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/windows-下环境变量的读取顺序/" rel="tag"># windows 下环境变量的读取顺序</a>
+          
+        </div>
+      
 
       
       
@@ -433,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/sql之left-join、right-join、inner-join的区别/" rel="next" title="sql之left join、right join、inner join的区别">
-                <i class="fa fa-chevron-left"></i> sql之left join、right join、inner join的区别
+              <a href="/2019/04/15/公钥私钥数字签名/" rel="next" title="公钥私钥数字签名">
+                <i class="fa fa-chevron-left"></i> 公钥私钥数字签名
               </a>
             
           </div>
@@ -442,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/09/linux的nohup命令的用法/" rel="prev" title="linux的nohup命令的用法">
-                linux的nohup命令的用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -490,8 +458,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -549,6 +526,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#经测试："><span class="nav-number">1.</span> <span class="nav-text">经测试：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接上结论："><span class="nav-number">2.</span> <span class="nav-text">直接上结论：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
